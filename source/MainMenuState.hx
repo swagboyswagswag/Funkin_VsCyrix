@@ -1,5 +1,6 @@
 package;
 
+import Options.CyrixOptions;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -100,13 +101,13 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollow, null, 0.06);
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 38, 0, "FNF v" + Application.current.meta.get('version'), 12);
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 58, 0, "FNF v" + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
 		// small things: versioning
-		var smallThingsVersionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "Small Things v" + smallThingsVersion, 12);
+		var smallThingsVersionShit:FlxText = new FlxText(5, FlxG.height - 38, 0, "Small Things v" + smallThingsVersion, 12);
 		smallThingsVersionShit.scrollFactor.set();
 		smallThingsVersionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 
@@ -115,6 +116,11 @@ class MainMenuState extends MusicBeatState
 		}
 
 		add(smallThingsVersionShit);
+
+		var cyrixVersionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, CyrixOptions.cy_version, 12);
+		cyrixVersionShit.scrollFactor.set();
+		cyrixVersionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(cyrixVersionShit);
 
 		// NG.core.calls.event.logEvent('swag').send();
 
