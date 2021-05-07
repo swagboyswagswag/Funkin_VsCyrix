@@ -8,6 +8,11 @@ class Options
 	public static var masterVolume:Float = 1;
 }
 
+class CyrixOptions
+{
+	public static var cy_version:String = "VS Cyrix 0.1-Proto";		// VS Cyrix: Version string
+}
+
 class STOptions
 {
 	public static var st_optionsState:Array<STOptionFileSection>;
