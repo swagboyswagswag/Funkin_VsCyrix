@@ -39,6 +39,12 @@ class LoadingState extends MusicBeatState
 		logo = new FlxSprite(-150, -100);
 		logo.frames = Paths.getSparrowAtlas('logoBumpin');
 		logo.antialiasing = true;
+
+		logo.scale.x = 0.85;
+		logo.scale.y = 0.85;
+		logo.x += 160;
+		logo.y += 112;
+
 		logo.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logo.animation.play('bump');
 		logo.updateHitbox();
