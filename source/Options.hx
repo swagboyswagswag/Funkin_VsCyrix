@@ -55,8 +55,10 @@ class STOptions
 			if (i.name == "extraDialogue")
 				STOptions.st_extraDialogue = i.value;
 
+			/*
 			if (i.name == "extraSongs")
 				STOptions.st_extraSongs = i.value;
+			*/
 
 			if (i.name == "instMode")
 				STOptions.st_instMode = i.value;
