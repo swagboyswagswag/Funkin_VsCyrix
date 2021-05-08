@@ -447,7 +447,7 @@ class TitleState extends MusicBeatState
 		} else if (STOptions.st_customIntro == true) {
 			switch (curBeat) {
 				case 1:
-					createCoolText(['AyeTSG']);
+					createCoolText(['DX Studios']);
 				case 3:
 					addMoreText('presents');
 				case 4:
