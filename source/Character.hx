@@ -139,6 +139,68 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
+			case 'cyrix':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('Cyrix', 'cyrix');
+				frames = tex;
+				animation.addByPrefix('idle', 'cyrix idle', 24);
+				animation.addByPrefix('singUP', 'cyrix up note', 24);
+				animation.addByPrefix('singRIGHT', 'cyrix right note', 24);
+				animation.addByPrefix('singDOWN', 'cyrix down note', 24);
+				animation.addByPrefix('singLEFT', 'cyrix left note', 24);
+	
+				addOffset('idle', 0, -3);
+				addOffset("singUP", 8, -1);
+				addOffset("singRIGHT", 14, -26);
+				addOffset("singLEFT", -10, -11);
+				addOffset("singDOWN", 0, -43);
+	
+				playAnim('idle');
+
+				this.scale.x = 0.85;
+				this.scale.y = 0.85;
+			case 'cyrix-nervous':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('Cyrix_Nervous', 'cyrix');
+				frames = tex;
+
+				animation.addByPrefix('idle', 'nevcyrix idle', 24);
+				animation.addByPrefix('singUP', 'nevcyrix up note', 24);
+				animation.addByPrefix('singRIGHT', 'nevcyrix right note', 24);
+				animation.addByPrefix('singDOWN', 'nevcyrix down note', 24);
+				animation.addByPrefix('singLEFT', 'nevcyrix left note', 24);
+		
+				addOffset('idle', 0, -3);
+				addOffset("singUP", 8, -1);
+				addOffset("singRIGHT", 14, -26);
+				addOffset("singLEFT", -10, -11);
+				addOffset("singDOWN", 0, -43);
+		
+				playAnim('idle');
+	
+				this.scale.x = 0.85;
+				this.scale.y = 0.85;
+			case 'cyrix-crazy':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('Cyrix_Crazy', 'cyrix');
+				frames = tex;
+	
+				animation.addByPrefix('idle', 'crazycyrix idle', 24);
+				animation.addByPrefix('singUP', 'crazycyrix up note', 24);
+				animation.addByPrefix('singRIGHT', 'crazycyrix right note', 24);
+				animation.addByPrefix('singDOWN', 'crazycyrix down note', 24);
+				animation.addByPrefix('singLEFT', 'crazycyrix left note', 24);
+			
+				addOffset('idle', 0, -94);
+				addOffset("singUP", 0, -1);
+				addOffset("singRIGHT", 0, -56);
+				addOffset("singLEFT", 0, -30);
+				addOffset("singDOWN", 0, -43);
+			
+				playAnim('idle');
+		
+				this.scale.x = 0.85;
+				this.scale.y = 0.85;
 			case 'spooky':
 				tex = Paths.getSparrowAtlas('spooky_kids_assets');
 				frames = tex;

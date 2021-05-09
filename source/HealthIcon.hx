@@ -39,6 +39,7 @@ class HealthIcon extends FlxSprite
 		animation.add('unknown-pixel', [221, 221], 0, false, isPlayer); // small things: unknown pixel character icon
 		animation.add('mic', [222, 222], 0, false, isPlayer); // small things: microphone
 		animation.add('cyrix', [25, 26], 0, false, isPlayer); // vs cyrix: cyrix
+		animation.add('cyrix-nervous', [25, 26], 0, false, isPlayer); // vs cyrix: cyrix
 		animation.add('cyrix-crazy', [27, 28], 0, false, isPlayer); // vs cyrix: crazy cyrix
 		animation.play(char);
 		scrollFactor.set();
