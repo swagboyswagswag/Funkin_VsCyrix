@@ -627,7 +627,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 0.9;
 						curStage = 'studio';
 						var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('studio/studio_back', 'cyrix'));
-						bg.setGraphicSize(Std.int(bg.width * 2.5));
+						bg.setGraphicSize(Std.int(bg.width * 0.845));
 						bg.screenCenter();
 						bg.antialiasing = true;
 						bg.scrollFactor.set(0.9, 0.9);
@@ -674,6 +674,8 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-pixel';
 			case 'schoolEvil':
 				gfVersion = 'gf-pixel';
+			case 'studio':
+				gfVersion = 'gf-studio';
 		}
 
 		if (curStage == 'limo')
@@ -681,6 +683,18 @@ class PlayState extends MusicBeatState
 
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
+
+		if (curStage == 'studio') {
+			if (gfVersion == 'gf-studio') {
+				gf.scrollFactor.set(0.9, 0.9);
+
+				gf.scale.x = 0.85;
+				gf.scale.y = 0.85;
+
+				gf.x += 96;
+				gf.y += 176;
+			}
+		}
 
 		dad = new Character(100, 100, SONG.player2);
 

@@ -41,6 +41,7 @@ class HealthIcon extends FlxSprite
 		animation.add('cyrix', [25, 26], 0, false, isPlayer); // vs cyrix: cyrix
 		animation.add('cyrix-nervous', [25, 26], 0, false, isPlayer); // vs cyrix: cyrix
 		animation.add('cyrix-crazy', [27, 28], 0, false, isPlayer); // vs cyrix: crazy cyrix
+		animation.add('gf-studio', [16], 0, false, isPlayer); // vs cyrix: gf studio
 		animation.play(char);
 		scrollFactor.set();
 	}
