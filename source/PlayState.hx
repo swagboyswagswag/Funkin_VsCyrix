@@ -229,6 +229,14 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
+			case 'assembly':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('assembly/assemblyDialogue'));
+			case 'voltage':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('voltage/voltageDialogue'));
+			case 'integer-overflow':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('integer-overflow/integer-overflowDialogue'));
+			case 'system-crash':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('system-crash/system-crashDialogue'));
 		}
 
 		// check for lyrics
@@ -615,6 +623,16 @@ class PlayState extends MusicBeatState
 		                            add(waveSpriteFG);
 		                    */
 		          }
+				  case 'assembly' | 'voltage' | 'integer-overflow' | 'system-crash':
+						defaultCamZoom = 0.9;
+						curStage = 'studio';
+						var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('studio/studio_back', 'cyrix'));
+						bg.setGraphicSize(Std.int(bg.width * 2.5));
+						bg.screenCenter();
+						bg.antialiasing = true;
+						bg.scrollFactor.set(0.9, 0.9);
+						bg.active = false;
+						add(bg);
 		          default:
 		          {
 		                  defaultCamZoom = 0.9;
@@ -1074,6 +1092,14 @@ class PlayState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('ANGRY'));
 					doDialogue(doof);
 				case 'thorns':
+					doDialogue(doof);
+				case 'assembly':
+					doDialogue(doof);
+				case 'voltage':
+					doDialogue(doof);
+				case 'integer-overflow':
+					doDialogue(doof);
+				case 'system-crash':
 					doDialogue(doof);
 				default:
 					startCountdown();

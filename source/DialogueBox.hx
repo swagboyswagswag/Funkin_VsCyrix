@@ -159,6 +159,26 @@ class DialogueBox extends FlxSpriteGroup
 			case 'thorns':
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'assembly':
+				if (PlayState.isStoryMode) {
+					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				}
+			case 'voltage':
+				if (PlayState.isStoryMode) {
+					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				}
+			case 'integer-overflow':
+				if (PlayState.isStoryMode) {
+					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				}
+			case 'system-crash':
+				if (PlayState.isStoryMode) {
+					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				}
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -352,6 +372,34 @@ class DialogueBox extends FlxSpriteGroup
 
 				handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
 				add(handSelect);
+			case 'assembly':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByPrefix('normal', 'Speech Bubble Normal Open', 24, false);
+				box.setGraphicSize(Std.int(box.width * 1 * 0.9));
+				box.y = (FlxG.height - box.height) + 80;
+			case 'voltage':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByPrefix('normal', 'Speech Bubble Normal Open', 24, false);
+				box.setGraphicSize(Std.int(box.width * 1 * 0.9));
+				box.y = (FlxG.height - box.height) + 80;
+			case 'integer-overflow':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByPrefix('normal', 'Speech Bubble Normal Open', 24, false);
+				box.setGraphicSize(Std.int(box.width * 1 * 0.9));
+				box.y = (FlxG.height - box.height) + 80;
+			case 'system-crash':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByPrefix('normal', 'Speech Bubble Normal Open', 24, false);
+				box.setGraphicSize(Std.int(box.width * 1 * 0.9));
+				box.y = (FlxG.height - box.height) + 80;
 		}
 
 		this.dialogueList = dialogueList;
@@ -509,6 +557,14 @@ class DialogueBox extends FlxSpriteGroup
 						case 'senpai':
 							FlxG.sound.music.fadeOut(2.2, 0);
 						case 'thorns':
+							FlxG.sound.music.fadeOut(2.2, 0);
+						case 'assembly':
+							FlxG.sound.music.fadeOut(2.2, 0);
+						case 'voltage':
+							FlxG.sound.music.fadeOut(2.2, 0);
+						case 'integer-overflow':
+							FlxG.sound.music.fadeOut(2.2, 0);
+						case 'system-crash':
 							FlxG.sound.music.fadeOut(2.2, 0);
 					}
 
@@ -824,6 +880,26 @@ class DialogueBox extends FlxSpriteGroup
 
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
+				}
+			case 'cyrix':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('cyrixText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(136, 222, 48);
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
+					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Normal', 24, false);
+					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
+					portraitLeft.antialiasing = true;
+					portraitLeft.updateHitbox();
+					portraitLeft.scrollFactor.set();
+					// portraitLeft.screenCenter(X);
+
+					portraitLeft.x = box.x + 64;
+					portraitLeft.y = box.y - 196;
+
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
 				}
 		}
 	}
