@@ -16,7 +16,7 @@ https://twitter.com/AetherDX​
 https://www.youtube.com/channel/UCvDpWzh15Ad_bqh-_MfQbyw
 
 vomic - Artist
-https://twitter.com/SodaReishii​
+https://twitter.com/theawesomefart
 
 AyeTSG - Programmer/Engine Maker
 https://twitter.com/AyeTSG​
