@@ -124,6 +124,9 @@ class PlayState extends MusicBeatState
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
+	var cy_spk1:StudioSpeaker;
+	var cy_spk2:StudioSpeaker;
+
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
@@ -627,6 +630,8 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 0.9;
 						curStage = 'studio';
 
+						var speakerScale:Float = 0.845;
+
 						var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('studio/studio_back', 'cyrix'));
 						bg.setGraphicSize(Std.int(bg.width * 0.845));
 						bg.screenCenter();
@@ -634,6 +639,25 @@ class PlayState extends MusicBeatState
 						bg.scrollFactor.set(0.9, 0.9);
 						bg.active = false;
 						add(bg);
+
+						cy_spk1 = new StudioSpeaker(0, 0);
+						cy_spk1.scale.x = speakerScale;
+						cy_spk1.scale.y = speakerScale;
+				  		cy_spk1.screenCenter();
+						cy_spk1.scrollFactor.set(0.9, 0.9);
+				  		cy_spk1.x += -672;
+						cy_spk1.y += -32;
+						add(cy_spk1);
+
+						cy_spk2 = new StudioSpeaker(0, 0);
+						cy_spk2.scale.x = speakerScale;
+						cy_spk2.scale.y = speakerScale;
+				  		cy_spk2.screenCenter();
+						cy_spk2.scrollFactor.set(0.9, 0.9);
+						cy_spk2.x += 640;
+						cy_spk2.y += -32;
+						cy_spk2.flipX = true;
+						add(cy_spk2);
 
 						var bg_fx:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('studio/studio_fx', 'cyrix'));
 						bg_fx.setGraphicSize(Std.int(bg.width * 0.845));
@@ -3139,6 +3163,9 @@ class PlayState extends MusicBeatState
 					trainCooldown = FlxG.random.int(-4, 0);
 					trainStart();
 				}
+			case "studio":
+				cy_spk1.dance();
+				cy_spk2.dance();
 		}
 
 		if (isHalloween && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)
