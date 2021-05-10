@@ -626,6 +626,7 @@ class PlayState extends MusicBeatState
 				  case 'assembly' | 'voltage' | 'integer-overflow' | 'system-crash':
 						defaultCamZoom = 0.9;
 						curStage = 'studio';
+
 						var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('studio/studio_back', 'cyrix'));
 						bg.setGraphicSize(Std.int(bg.width * 0.845));
 						bg.screenCenter();
@@ -633,6 +634,14 @@ class PlayState extends MusicBeatState
 						bg.scrollFactor.set(0.9, 0.9);
 						bg.active = false;
 						add(bg);
+
+						var bg_fx:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('studio/studio_fx', 'cyrix'));
+						bg_fx.setGraphicSize(Std.int(bg.width * 0.845));
+						bg_fx.screenCenter();
+						bg_fx.antialiasing = true;
+						bg_fx.scrollFactor.set(0.9, 0.9);
+						bg_fx.active = false;
+						add(bg_fx);
 		          default:
 		          {
 		                  defaultCamZoom = 0.9;
