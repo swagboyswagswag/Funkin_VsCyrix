@@ -901,6 +901,46 @@ class DialogueBox extends FlxSpriteGroup
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
 				}
+				case 'cyrix-huh':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('cyrixText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(136, 222, 48);
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
+					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Left', 24, false);
+					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
+					portraitLeft.antialiasing = true;
+					portraitLeft.updateHitbox();
+					portraitLeft.scrollFactor.set();
+					// portraitLeft.screenCenter(X);
+
+					portraitLeft.x = box.x + 64;
+					portraitLeft.y = box.y - 196;
+
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+				case 'cyrix-smug':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('cyrixText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(136, 222, 48);
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
+					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Smile', 24, false);
+					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
+					portraitLeft.antialiasing = true;
+					portraitLeft.updateHitbox();
+					portraitLeft.scrollFactor.set();
+					// portraitLeft.screenCenter(X);
+
+					portraitLeft.x = box.x + 64;
+					portraitLeft.y = box.y - 196;
+
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
 		}
 	}
 
