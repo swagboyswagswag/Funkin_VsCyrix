@@ -916,7 +916,7 @@ class DialogueBox extends FlxSpriteGroup
 					// portraitLeft.screenCenter(X);
 
 					portraitLeft.x = box.x + 64;
-					portraitLeft.y = box.y - 196;
+					portraitLeft.y = box.y - 190;
 
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
@@ -948,7 +948,27 @@ class DialogueBox extends FlxSpriteGroup
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
-					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Tired', 24, false);
+					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Tired Smile', 24, false);
+					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
+					portraitLeft.antialiasing = true;
+					portraitLeft.updateHitbox();
+					portraitLeft.scrollFactor.set();
+					// portraitLeft.screenCenter(X);
+
+					portraitLeft.x = box.x + 64;
+					portraitLeft.y = box.y - 172;
+
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+				case 'cyrix-smug':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('cyrixText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(136, 222, 48);
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
+					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Smile', 24, false);
 					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
 					portraitLeft.antialiasing = true;
 					portraitLeft.updateHitbox();
@@ -961,14 +981,14 @@ class DialogueBox extends FlxSpriteGroup
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
 				}
-				case 'cyrix-tired-smile':
+				case 'cyrix-crazy':
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('cyrixText'), 0.6)];
 				swagDialogue.color = FlxColor.fromRGB(136, 222, 48);
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
-					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Tired Smile', 24, false);
+					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Crazy', 24, false);
 					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
 					portraitLeft.antialiasing = true;
 					portraitLeft.updateHitbox();
@@ -976,7 +996,27 @@ class DialogueBox extends FlxSpriteGroup
 					// portraitLeft.screenCenter(X);
 
 					portraitLeft.x = box.x + 64;
-					portraitLeft.y = box.y - 196;
+					portraitLeft.y = box.y - 172;
+
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+				case 'cyrix-annoyed':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('cyrixText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(136, 222, 48);
+				portraitRight.visible = false;
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
+					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Tired0000', 24, false);
+					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
+					portraitLeft.antialiasing = true;
+					portraitLeft.updateHitbox();
+					portraitLeft.scrollFactor.set();
+					// portraitLeft.screenCenter(X);
+
+					portraitLeft.x = box.x + 64;
+					portraitLeft.y = box.y - 172;
 
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
