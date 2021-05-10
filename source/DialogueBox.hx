@@ -1008,7 +1008,7 @@ class DialogueBox extends FlxSpriteGroup
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
-					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Static', 24, false);
+					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Static', 24, true);
 					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
 					portraitLeft.antialiasing = true;
 					portraitLeft.updateHitbox();
@@ -1016,7 +1016,7 @@ class DialogueBox extends FlxSpriteGroup
 					// portraitLeft.screenCenter(X);
 
 					portraitLeft.x = box.x + 64;
-					portraitLeft.y = box.y - 196;
+					portraitLeft.y = box.y - 172;
 
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
