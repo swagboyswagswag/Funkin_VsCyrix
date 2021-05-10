@@ -961,7 +961,7 @@ class DialogueBox extends FlxSpriteGroup
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
 				}
-				case 'cyrix-smug':
+				case 'cyrix-tired-smile':
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('cyrixText'), 0.6)];
 				swagDialogue.color = FlxColor.fromRGB(136, 222, 48);
 				portraitRight.visible = false;
