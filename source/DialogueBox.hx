@@ -161,22 +161,22 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'assembly':
 				if (PlayState.isStoryMode) {
-					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
+					FlxG.sound.playMusic(Paths.music('DialogueMusic', 'cyrix'), 0.6);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				}
 			case 'voltage':
 				if (PlayState.isStoryMode) {
-					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
+					FlxG.sound.playMusic(Paths.music('DialogueMusic', 'cyrix'), 0.6);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				}
 			case 'integer-overflow':
 				if (PlayState.isStoryMode) {
-					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
+					FlxG.sound.playMusic(Paths.music('DialogueMusic', 'cyrix'), 0.6);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				}
 			case 'system-crash':
 				if (PlayState.isStoryMode) {
-					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
+					FlxG.sound.playMusic(Paths.music('OhShitHeGlitch', 'cyrix'), 0.6);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				}
 		}
