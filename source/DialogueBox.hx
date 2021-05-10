@@ -1036,7 +1036,7 @@ class DialogueBox extends FlxSpriteGroup
 					// portraitLeft.screenCenter(X);
 
 					portraitLeft.x = box.x + 64;
-					portraitLeft.y = box.y - 196;
+					portraitLeft.y = box.y - 185;
 
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
