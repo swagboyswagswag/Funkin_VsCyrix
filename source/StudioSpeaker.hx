@@ -15,15 +15,8 @@ class StudioSpeaker extends FlxSprite
 		antialiasing = true;
 	}
 
-	var danceDir:Bool = false;
-
 	public function dance():Void
 	{
-		danceDir = !danceDir;
-
-		if (danceDir)
-			animation.play('bump', true);
-		else
-			animation.play('bump', true);
+		animation.play('bump', true);
 	}
 }
