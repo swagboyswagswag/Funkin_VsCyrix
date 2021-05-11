@@ -654,6 +654,86 @@ class DialogueBox extends FlxSpriteGroup
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
 				}
+			case 'bf-surprised2':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('bfText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(80, 165, 235);
+				portraitLeft.visible = false;
+				if (!portraitRight.visible)
+				{
+					portraitRight.frames = Paths.getSparrowAtlas('portraits', 'shared');
+					portraitRight.animation.addByPrefix('enter', 'bf-surprised2 portrait', 24, false);
+					portraitRight.setGraphicSize(Std.int(portraitRight.width * 1 * 0.75));
+					portraitRight.antialiasing = true;
+					portraitRight.updateHitbox();
+					portraitRight.scrollFactor.set();
+					// portraitRight.screenCenter(X);
+
+					portraitRight.x = (box.x + box.width) - (portraitRight.width) - 60;
+					portraitRight.y = box.y - 168;
+
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
+			case 'bf-surprise':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('bfText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(80, 165, 235);
+				portraitLeft.visible = false;
+				if (!portraitRight.visible)
+				{
+					portraitRight.frames = Paths.getSparrowAtlas('portraits', 'shared');
+					portraitRight.animation.addByPrefix('enter', 'bf-surprise portrait', 24, false);
+					portraitRight.setGraphicSize(Std.int(portraitRight.width * 1 * 0.75));
+					portraitRight.antialiasing = true;
+					portraitRight.updateHitbox();
+					portraitRight.scrollFactor.set();
+					// portraitRight.screenCenter(X);
+
+					portraitRight.x = (box.x + box.width) - (portraitRight.width) - 60;
+					portraitRight.y = box.y - 168;
+
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
+			case 'bf-concerned':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('bfText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(80, 165, 235);
+				portraitLeft.visible = false;
+				if (!portraitRight.visible)
+				{
+					portraitRight.frames = Paths.getSparrowAtlas('portraits', 'shared');
+					portraitRight.animation.addByPrefix('enter', 'bf-concerned portrait', 24, false);
+					portraitRight.setGraphicSize(Std.int(portraitRight.width * 1 * 0.75));
+					portraitRight.antialiasing = true;
+					portraitRight.updateHitbox();
+					portraitRight.scrollFactor.set();
+					// portraitRight.screenCenter(X);
+
+					portraitRight.x = (box.x + box.width) - (portraitRight.width) - 60;
+					portraitRight.y = box.y - 168;
+
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
+			case 'bf-alarmed':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('bfText'), 0.6)];
+				swagDialogue.color = FlxColor.fromRGB(80, 165, 235);
+				portraitLeft.visible = false;
+				if (!portraitRight.visible)
+				{
+					portraitRight.frames = Paths.getSparrowAtlas('portraits', 'shared');
+					portraitRight.animation.addByPrefix('enter', 'bf-alarmed portrait', 24, false);
+					portraitRight.setGraphicSize(Std.int(portraitRight.width * 1 * 0.75));
+					portraitRight.antialiasing = true;
+					portraitRight.updateHitbox();
+					portraitRight.scrollFactor.set();
+					// portraitRight.screenCenter(X);
+
+					portraitRight.x = (box.x + box.width) - (portraitRight.width) - 60;
+					portraitRight.y = box.y - 168;
+
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
 			case 'dad':
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dadText'), 0.6)];
 				swagDialogue.color = FlxColor.fromRGB(211, 150, 252);
@@ -957,26 +1037,6 @@ class DialogueBox extends FlxSpriteGroup
 
 					portraitLeft.x = box.x + 64;
 					portraitLeft.y = box.y - 172;
-
-					portraitLeft.visible = true;
-					portraitLeft.animation.play('enter');
-				}
-				case 'cyrix-smug':
-				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('cyrixText'), 0.6)];
-				swagDialogue.color = FlxColor.fromRGB(136, 222, 48);
-				portraitRight.visible = false;
-				if (!portraitLeft.visible)
-				{
-					portraitLeft.frames = Paths.getSparrowAtlas('Cyrix_Portraits', 'cyrix');
-					portraitLeft.animation.addByPrefix('enter', 'Cyrix Portrait Smile', 24, false);
-					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
-					portraitLeft.antialiasing = true;
-					portraitLeft.updateHitbox();
-					portraitLeft.scrollFactor.set();
-					// portraitLeft.screenCenter(X);
-
-					portraitLeft.x = box.x + 64;
-					portraitLeft.y = box.y - 196;
 
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
