@@ -632,6 +632,15 @@ class PlayState extends MusicBeatState
 
 						var speakerScale:Float = 0.845;
 
+						var bg_back:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('studio/studio_evenfurtherback', 'cyrix'));
+						bg_back.setGraphicSize(Std.int(bg_back.width * 0.845));
+						bg_back.screenCenter();
+						bg_back.antialiasing = true;
+						bg_back.scrollFactor.set(0.85, 0.85);
+						bg_back.active = false;
+						bg_back.x += 32;
+						add(bg_back);
+
 						var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('studio/studio_back', 'cyrix'));
 						bg.setGraphicSize(Std.int(bg.width * 0.845));
 						bg.screenCenter();
