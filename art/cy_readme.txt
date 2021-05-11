@@ -8,7 +8,7 @@ This mod is built on the Friday Night Funkin': Small Things engine! Made by AyeT
 
 Story:
 
-It's the big day! You're finally able to meet with the music producer known as Cyrix! He's been awaiting this day for so long, and he's ready to help you mix up some new tracks!
+As word spreads of your many adventures, a message comes in from the music producer Cyrix! He wants you in his studio, and is ready to mix up some new tracks! You ready to get funky?
 
 CREDITS:
 AetherDX - Director
