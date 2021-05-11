@@ -171,7 +171,7 @@ class DialogueBox extends FlxSpriteGroup
 				}
 			case 'integer-overflow':
 				if (PlayState.isStoryMode) {
-					FlxG.sound.playMusic(Paths.music('DialogueMusic', 'cyrix'), 0.6);
+					FlxG.sound.playMusic(Paths.music('IntegerDialogue', 'cyrix'), 0.6);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				}
 			case 'system-crash':
