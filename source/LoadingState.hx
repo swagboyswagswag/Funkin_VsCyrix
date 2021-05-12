@@ -40,10 +40,10 @@ class LoadingState extends MusicBeatState
 		logo.frames = Paths.getSparrowAtlas('logoBumpin');
 		logo.antialiasing = true;
 
-		logo.scale.x = 0.85;
-		logo.scale.y = 0.85;
-		logo.x += 160;
-		logo.y += 112;
+		logo.scale.x = 0.8;
+		logo.scale.y = 0.8;
+		logo.x += 64;
+		logo.y += 24;
 
 		logo.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logo.animation.play('bump');
