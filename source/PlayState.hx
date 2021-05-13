@@ -127,6 +127,8 @@ class PlayState extends MusicBeatState
 	var cy_spk1:StudioSpeaker;
 	var cy_spk2:StudioSpeaker;
 
+	var cy_crash:StudioCrashBG;
+
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
@@ -626,7 +628,7 @@ class PlayState extends MusicBeatState
 		                            add(waveSpriteFG);
 		                    */
 		          }
-				  case 'assembly' | 'voltage' | 'integer-overflow' | 'system-crash':
+				  case 'assembly' | 'voltage' | 'integer-overflow':
 						defaultCamZoom = 0.9;
 						curStage = 'studio';
 
@@ -675,6 +677,20 @@ class PlayState extends MusicBeatState
 						bg_fx.scrollFactor.set(0.9, 0.9);
 						bg_fx.active = false;
 						add(bg_fx);
+				  case 'system-crash':
+						defaultCamZoom = 0.9;
+						curStage = 'studio-crash';
+
+						cy_crash = new StudioCrashBG(0, 0);
+						cy_crash.setGraphicSize(Std.int(cy_crash.width * 1.75));
+						cy_crash.screenCenter();
+						cy_crash.antialiasing = true;
+						cy_crash.scrollFactor.set(0.85, 0.85);
+						cy_crash.x += 32;
+						cy_crash.y += 80;
+
+						add(cy_crash);
+						cy_crash.animation.play('code');
 		          default:
 		          {
 		                  defaultCamZoom = 0.9;
@@ -718,6 +734,8 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-pixel';
 			case 'studio':
 				gfVersion = 'gf-studio';
+			case 'studio-crash':
+				gfVersion = 'gf-studio';
 		}
 
 		if (curStage == 'limo')
@@ -726,7 +744,7 @@ class PlayState extends MusicBeatState
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		if (curStage == 'studio') {
+		if (curStage == 'studio' || curStage == 'studio-crash') {
 			if (gfVersion == 'gf-studio') {
 				gf.scrollFactor.set(0.9, 0.9);
 
