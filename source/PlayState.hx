@@ -293,6 +293,8 @@ class PlayState extends MusicBeatState
 				iconRPC = 'monster';
 			case 'mom-car':
 				iconRPC = 'mom';
+			case 'cyrix-nervous':
+				iconRPC = 'cyrix';
 		}
 
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
