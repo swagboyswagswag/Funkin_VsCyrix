@@ -13,7 +13,7 @@ class DiscordClient
 		if (STOptions.st_discordRpc == true) {
 			trace("Discord Client starting...");
 			DiscordRpc.start({
-				clientID: "827349708565118996",
+				clientID: "842957930541744138",
 				onReady: onReady,
 				onError: onError,
 				onDisconnected: onDisconnected
@@ -44,7 +44,7 @@ class DiscordClient
 				details: "In the Menus",
 				state: null,
 				largeImageKey: 'icon',
-				largeImageText: "Friday Night Funkin': Small Things"
+				largeImageText: "Friday Night Funkin': VS Cyrix"
 			});
 		}
 	}
@@ -86,7 +86,7 @@ class DiscordClient
 				details: details,
 				state: state,
 				largeImageKey: 'icon',
-				largeImageText: "Friday Night Funkin': Small Things",
+				largeImageText: "Friday Night Funkin': VS Cyrix",
 				smallImageKey : smallImageKey,
 				// Obtained times are in milliseconds so they are divided so Discord can use it
 				startTimestamp : Std.int(startTimestamp / 1000),
