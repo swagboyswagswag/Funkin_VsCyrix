@@ -11,20 +11,33 @@ Story:
 As word spreads of your many adventures, a message comes in from the music producer Cyrix! He wants you in his studio, and is ready to mix up some new tracks! You ready to get funky?
 
 CREDITS:
-AetherDX - Director
-https://twitter.com/AetherDX​
-https://www.youtube.com/channel/UCvDpWzh15Ad_bqh-_MfQbyw
+Kallionic - Trailer Editor
+https://www.youtube.com/c/Kallionic
+https://twitter.com/RisingRyota
 
-vomic - Artist
+Matt$ - Composter/Charter/Director
+https://twitter.com/matt_currency
+https://youtube.com/c/MattMoney
+
+AetherDX - Co-Director/Programmer
+https://twitter.com/AetherDX
+
+AyeTSG - Co-Director/Programmer
+https://www.youtube.com/c/AyeTSG
+https://twitter.com/AyeTSG
+
+vomic - Artist/Animator
+http://vomic.newgrounds.com
 https://twitter.com/theawesomefart
 
-AyeTSG - Programmer/Engine Maker
-https://twitter.com/AyeTSG​
-https://www.youtube.com/channel/UCaSH5RqYWV-TOzwSmufmHYQ
+SodaReishii - Extra BF Portraits Artist
+https://twitter.com/SodaReishii
 
-Matt$ - Charter/Composer
-https://twitter.com/matt_currency​
-youtube.com/c/MattMoney
+TokyoGalaxy - Menu Background Artist
+https://twitter.com/TokyoGalaxyOG
+
+KazoFox - Logo Artist
+https://twitter.com/KazoFox
 
 VS Cyrix is produced and published by DX Studios.
 Check out the rest of our work here: https://ayetsg.github.io/projects/dx/
