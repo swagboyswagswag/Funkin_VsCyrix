@@ -11,7 +11,7 @@ class Options
 
 class CyrixOptions
 {
-	public static var cy_version:String = "VS Cyrix v1.0 (Pre-Release)";	// VS Cyrix: Version string
+	public static var cy_version:String = "VS Cyrix v1.0";	// VS Cyrix: Version string
 }
 
 class STOptions
