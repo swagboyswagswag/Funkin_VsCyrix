@@ -52,14 +52,14 @@ class LoadingState extends MusicBeatState
 		// logoBl.color = FlxColor.BLACK;
 
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
-		gfDance.frames = Paths.getSparrowAtlas('placeholder_cyrix_title');
-		gfDance.animation.addByPrefix('idle', 'cyrix idle', 24, false);
+		gfDance.frames = Paths.getSparrowAtlas('cyrix_title');
+		gfDance.animation.addByPrefix('idle', 'Cyrix Main Menu', 24, false);
 		gfDance.antialiasing = true;
 		gfDance.scale.x = 0.8;
 		gfDance.scale.y = 0.8;
 		gfDance.flipX = true;
-		gfDance.x += 160;
-		gfDance.y += -96;
+		gfDance.x += 75;
+		gfDance.y += -110;
 		add(gfDance);
 		add(logo);
 		
