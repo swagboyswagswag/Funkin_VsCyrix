@@ -11,6 +11,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import Discord.DiscordClient;
 
 class OptionsMenu extends MusicBeatState
 {
@@ -25,13 +26,14 @@ class OptionsMenu extends MusicBeatState
 
 	// TODO: Add better array for Small Thing's options.
 	var textMenuItems:Array<String> = [
-		'Debug',
-		'DiscordRPC',
-		'extraDialogue',
-		'instMode',
-		'lyrics',
-		'songIndicator',
-		'unknownIcons'
+		'Debug Mode',
+		'Rich Presence',
+		'Extra Dialogue',
+		'Instrumental Mode',
+		'Lyrics',
+		'Song Indicators',
+		'Unknown Icons',
+		// 'Control Scheme ',
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -52,19 +54,13 @@ class OptionsMenu extends MusicBeatState
 		grpOptionsTexts = new FlxTypedGroup<FlxText>();
 		add(grpOptionsTexts);
 
-		enabledText = new FlxTypedGroup<FlxText>();
-		add(enabledText);
-
 		for (i in 0...textMenuItems.length)
 		{
 			var optionText:FlxText = new FlxText(20, 20 + (i * 50), 0, textMenuItems[i], 32);
+			optionText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			optionText.ID = i;
 			grpOptionsTexts.add(optionText);
 		}
-		
-		// TEMPORARY: Create text to determine whether or not an option is enabled.
-		var EDtxt:FlxText = new FlxText(500, 20, 0, "FALSE", 32);
-		enabledText.add(EDtxt);
 		super.create();
 
 		// Yaknow what, fuck you! *un-substates your menu*
@@ -91,34 +87,122 @@ class OptionsMenu extends MusicBeatState
 		{
 			txt.color = FlxColor.WHITE;
 
+			switch (txt.ID) {
+				case 0:
+					if (STOptions.st_debug)
+						txt.color = FlxColor.LIME;
+					else
+						txt.color = FlxColor.RED;
+				
+				case 1:
+					if (STOptions.st_discordRpc)
+						txt.color = FlxColor.LIME;
+					else
+						txt.color = FlxColor.RED;
+
+				case 2:
+					if (STOptions.st_extraDialogue)
+						txt.color = FlxColor.LIME;
+					else
+						txt.color = FlxColor.RED;
+				case 3:
+					if (STOptions.st_instMode)
+						txt.color = FlxColor.LIME;
+					else
+						txt.color = FlxColor.RED;
+				
+				case 4:
+					if (STOptions.st_lyrics)
+						txt.color = FlxColor.LIME;
+					else
+						txt.color = FlxColor.RED;
+				
+				case 5:
+					if (STOptions.st_songIndicator)
+						txt.color = FlxColor.LIME;
+					else
+						txt.color = FlxColor.RED;
+				
+				case 6:
+					if (STOptions.st_unknownIcons)
+						txt.color = FlxColor.LIME;
+					else
+						txt.color = FlxColor.RED;
+
+				// case 7:
+				// 	if (STOptions.st_inputMode == 0)
+				// 		txt.text = "Control Scheme [WASD]";
+				// 	else
+				// 		txt.text = "Control Scheme [DFJK]";
+
+			}
+
 			if (txt.ID == curSelected)
 				txt.color = FlxColor.YELLOW;
-		});
-
-		// TEMPORARY: Show if the Debug menu option is True or False
-		enabledText.forEach(function(EDTxt:FlxText){
-			EDTxt.color = FlxColor.WHITE;
-			
-			switch (curSelected) {
-				case 0:
-					if (STOptions.st_debug == false)
-						EDTxt.text = "FALSE";
-					else
-						EDTxt.text = "TRUE";
-			}
 		});
 
 		if (controls.ACCEPT){
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			
-			// Manual way of setting the values using a switch statement
-			// TODO: Get this shitty code out of here and make it actually good.
 			switch (curSelected) {
+				// I didn't wanna do this all manually, but, well, here we are.
 				case 0:
 					if (STOptions.st_debug == false)
+						
 						STOptions.st_debug = true;
 					else
 						STOptions.st_debug = false;
+				case 1:
+					if (STOptions.st_discordRpc == false) {
+						STOptions.st_debug = true;
+						// TODO:
+						// add notice that the game needs to be restarted in order to re-enable rich presence.
+					}
+					else {
+						STOptions.st_debug = false;
+						DiscordClient.shutdown();
+					}
+
+				case 2:
+					if (STOptions.st_extraDialogue == false)
+						STOptions.st_extraDialogue = true;
+					else
+						STOptions.st_extraDialogue = false;
+
+				case 3:
+					if (STOptions.st_instMode == false)
+						STOptions.st_instMode = true;
+					else
+						STOptions.st_instMode = false;
+
+				case 4:
+					if (STOptions.st_lyrics == false)
+						STOptions.st_lyrics = true;
+					else
+						STOptions.st_lyrics = false;
+
+				case 5:
+					if (STOptions.st_songIndicator == false)
+						STOptions.st_songIndicator = true;
+					else
+						STOptions.st_songIndicator = false;
+
+				case 6:
+					if (STOptions.st_unknownIcons == false)
+						STOptions.st_unknownIcons = true;
+					else
+						STOptions.st_unknownIcons = false;
+				
+				// case 7:
+				// 	if (STOptions.st_inputMode  == 0) {
+
+				// 		STOptions.st_inputMode = 1;
+				// 	}
+				// 	else {
+				// 		STOptions.st_inputMode = 0;
+				// 	}
+					
+
 			}
 		}
 
