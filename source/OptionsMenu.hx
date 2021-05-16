@@ -154,12 +154,12 @@ class OptionsMenu extends MusicBeatState
 						STOptions.st_debug = false;
 				case 1:
 					if (STOptions.st_discordRpc == false) {
-						STOptions.st_debug = true;
+						STOptions.st_discordRpc = true;
 						// TODO:
 						// add notice that the game needs to be restarted in order to re-enable rich presence.
 					}
 					else {
-						STOptions.st_debug = false;
+						STOptions.st_discordRpc = false;
 						DiscordClient.shutdown();
 					}
 
