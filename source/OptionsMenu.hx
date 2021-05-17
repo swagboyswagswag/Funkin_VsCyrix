@@ -19,17 +19,17 @@ class OptionsMenu extends MusicBeatState
 	var controlsStrings:Array<String> = [];
 
 	// var selector:FlxSprite = new FlxSprite().makeGraphic(5, 5, FlxColor.RED);
-	var grpOptionsTexts:FlxTypedGroup<FlxText>;
+	var grpOptionsTexts:FlxTypedGroup<Alphabet>;
 
 	// TODO: Add better array for Small Thing's options.
 	var textMenuItems:Array<String> = [
-		'Debug',
-		'DiscordRPC',
-		'extraDialogue',
-		'instMode',
-		'lyrics',
-		'songIndicator',
-		'unknownIcons'
+		'Debug Mode',
+		'Discord RPC',
+		'Extra Dialogue',
+		'Instrumental Mode',
+		'Lyrics',
+		'Song Indicator',
+		'Unknown Icons'
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -47,13 +47,14 @@ class OptionsMenu extends MusicBeatState
 
 
 		// Options menu text
-		grpOptionsTexts = new FlxTypedGroup<FlxText>();
+		grpOptionsTexts = new FlxTypedGroup<Alphabet>();
 		add(grpOptionsTexts);
 
 		for (i in 0...textMenuItems.length)
 		{
-			var optionText:FlxText = new FlxText(20, 20 + (i * 50), 0, textMenuItems[i], 32);
+			var optionText:Alphabet = new Alphabet(20, 20 + (i * 82), textMenuItems[i], true);
 			optionText.ID = i;
+
 			grpOptionsTexts.add(optionText);
 		}
 		
@@ -78,14 +79,6 @@ class OptionsMenu extends MusicBeatState
 
 		if (curSelected >= textMenuItems.length)
 			curSelected = 0;
-
-		grpOptionsTexts.forEach(function(txt:FlxText)
-		{
-			txt.color = FlxColor.WHITE;
-
-			if (txt.ID == curSelected)
-				txt.color = FlxColor.YELLOW;
-		});
 
 		if (controls.ACCEPT){
 			FlxG.sound.play(Paths.sound('confirmMenu'));
