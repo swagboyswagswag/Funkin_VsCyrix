@@ -61,7 +61,7 @@ class STOptionsRewrite
                 fixMonsterIconFreeplay: true,
                 fixScoreLayout: true,
                 fixWeek6CountSounds: true,
-                hideOptionsMenu: true,
+                hideOptionsMenu: false,
                 inputMode: 0,
                 instMode: false,
                 logNG: true,
