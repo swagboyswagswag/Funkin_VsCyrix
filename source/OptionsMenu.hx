@@ -20,7 +20,6 @@ class OptionsMenu extends MusicBeatState
 
 	// var selector:FlxSprite = new FlxSprite().makeGraphic(5, 5, FlxColor.RED);
 	var grpOptionsTexts:FlxTypedGroup<FlxText>;
-	var enabledText:FlxTypedGroup<FlxText>;
 
 	// TODO: Add better array for Small Thing's options.
 	var textMenuItems:Array<String> = [
@@ -51,9 +50,6 @@ class OptionsMenu extends MusicBeatState
 		grpOptionsTexts = new FlxTypedGroup<FlxText>();
 		add(grpOptionsTexts);
 
-		enabledText = new FlxTypedGroup<FlxText>();
-		add(enabledText);
-
 		for (i in 0...textMenuItems.length)
 		{
 			var optionText:FlxText = new FlxText(20, 20 + (i * 50), 0, textMenuItems[i], 32);
@@ -61,9 +57,6 @@ class OptionsMenu extends MusicBeatState
 			grpOptionsTexts.add(optionText);
 		}
 		
-		// TEMPORARY: Create text to determine whether or not an option is enabled.
-		var EDtxt:FlxText = new FlxText(500, 20, 0, "FALSE", 32);
-		enabledText.add(EDtxt);
 		super.create();
 
 		// Yaknow what, fuck you! *un-substates your menu*
@@ -94,19 +87,6 @@ class OptionsMenu extends MusicBeatState
 				txt.color = FlxColor.YELLOW;
 		});
 
-		// TEMPORARY: Show if the Debug menu option is True or False
-		enabledText.forEach(function(EDTxt:FlxText){
-			EDTxt.color = FlxColor.WHITE;
-			
-			switch (curSelected) {
-				case 0:
-					if (STOptionsRewrite._variables.debug == false)
-						EDTxt.text = "FALSE";
-					else
-						EDTxt.text = "TRUE";
-			}
-		});
-
 		if (controls.ACCEPT){
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			
@@ -123,25 +103,6 @@ class OptionsMenu extends MusicBeatState
 
 		if (controls.BACK)
 			FlxG.switchState(new MainMenuState());
-	}
-
-	function waitingInput():Void
-	{
-		if (FlxG.keys.getIsDown().length > 0)
-		{
-			PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxG.keys.getIsDown()[0].ID, null);
-		}
-		// PlayerSettings.player1.controls.replaceBinding(Control)
-	}
-
-	var isSettingControl:Bool = false;
-
-	function changeBinding():Void
-	{
-		if (!isSettingControl)
-		{
-			isSettingControl = true;
-		}
 	}
 
 	function changeSelection(change:Int = 0)
