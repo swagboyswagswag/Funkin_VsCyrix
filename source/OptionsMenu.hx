@@ -1,15 +1,12 @@
+/*
+	!!!TODO: OPTION SCROLLING LIKE FREEPLAY!
+*/
+
 package;
 
-import Controls.Control;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.input.keyboard.FlxKey;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
@@ -19,18 +16,22 @@ class OptionsMenu extends MusicBeatState
 	var controlsStrings:Array<String> = [];
 
 	// var selector:FlxSprite = new FlxSprite().makeGraphic(5, 5, FlxColor.RED);
-	var grpOptionsTexts:FlxTypedGroup<FlxText>;
-	var enabledText:FlxTypedGroup<FlxText>;
+	var grpOptionsTexts:FlxTypedGroup<Alphabet>;
+	var grpOptionsIndicator:FlxTypedGroup<FlxSprite>;
+
+	var inputGraphic:FlxSprite;
 
 	// TODO: Add better array for Small Thing's options.
 	var textMenuItems:Array<String> = [
-		'Debug',
-		'DiscordRPC',
-		'extraDialogue',
-		'instMode',
-		'lyrics',
-		'songIndicator',
-		'unknownIcons'
+		'Debug Mode',			// 0
+		'Discord RPC',			// 1
+		'Extra Dialogue', 		// 2
+		'Extra Songs',			// 3
+		'Input Mode',			// 4
+		'Instrumental Mode',	// 5
+		'Lyrics',				// 6
+		'Song Indicator',		// 7
+		'Unknown Icons'			// 8
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -48,22 +49,67 @@ class OptionsMenu extends MusicBeatState
 
 
 		// Options menu text
-		grpOptionsTexts = new FlxTypedGroup<FlxText>();
+		grpOptionsTexts = new FlxTypedGroup<Alphabet>();
 		add(grpOptionsTexts);
-
-		enabledText = new FlxTypedGroup<FlxText>();
-		add(enabledText);
 
 		for (i in 0...textMenuItems.length)
 		{
-			var optionText:FlxText = new FlxText(20, 20 + (i * 50), 0, textMenuItems[i], 32);
+			var optionText:Alphabet = new Alphabet(16, 20 + (i * 70), textMenuItems[i], true);
 			optionText.ID = i;
+
+			optionText.x += 70;
+
+			optionText.alpha = 0.5;
+			
 			grpOptionsTexts.add(optionText);
 		}
 		
-		// TEMPORARY: Create text to determine whether or not an option is enabled.
-		var EDtxt:FlxText = new FlxText(500, 20, 0, "FALSE", 32);
-		enabledText.add(EDtxt);
+		// Options menu indicators
+		grpOptionsIndicator = new FlxTypedGroup<FlxSprite>();
+		add(grpOptionsIndicator);
+
+		for (i in 0...textMenuItems.length)
+		{
+			var optionIndicator:FlxSprite = new FlxSprite(16, 20 + (i * 70));
+			optionIndicator.ID = i;
+
+			optionIndicator.frames = Paths.getSparrowAtlas('st_ui_assets');
+			optionIndicator.animation.addByPrefix("true", "checkmark", 24, false);
+			optionIndicator.animation.addByPrefix("false", "xmark", 24, false);
+			optionIndicator.antialiasing = true;
+
+			// default anim true
+			optionIndicator.animation.play("true");
+
+			optionIndicator.scale.x = 0.4;
+			optionIndicator.scale.y = 0.4;
+
+			/*
+			optionIndicator.x = optionIndicator.x - (optionIndicator.width / 2);
+			*/
+			optionIndicator.x -= 88;
+			optionIndicator.y -= 26;
+
+			optionIndicator.alpha = 0.6;
+
+			grpOptionsIndicator.add(optionIndicator);
+		}
+
+		// input mode graphic
+		inputGraphic = new FlxSprite(grpOptionsTexts.members[4].x, grpOptionsTexts.members[4].y);
+		inputGraphic.frames = Paths.getSparrowAtlas('st_ui_assets');
+		inputGraphic.animation.addByPrefix("wasd", "wasd", 24, false);
+		inputGraphic.animation.addByPrefix("dfjk", "dfjk", 24, false);
+		inputGraphic.antialiasing = true;
+		inputGraphic.animation.play("wasd"); // default anim, will get changed later
+		inputGraphic.scale.x = 0.75;
+		inputGraphic.scale.y = 0.75;
+		inputGraphic.x += 592;
+		inputGraphic.y += -12;
+		inputGraphic.alpha = 0.6;
+
+		add(inputGraphic);
+
 		super.create();
 
 		// Yaknow what, fuck you! *un-substates your menu*
@@ -74,11 +120,15 @@ class OptionsMenu extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		if (controls.UP_P)
+		if (controls.UP_P) {
+			FlxG.sound.play(Paths.sound('scrollMenu'));
 			curSelected -= 1;
+		}
 
-		if (controls.DOWN_P)
+		if (controls.DOWN_P) {
+			FlxG.sound.play(Paths.sound('scrollMenu'));
 			curSelected += 1;
+		}
 
 		if (curSelected < 0)
 			curSelected = textMenuItems.length - 1;
@@ -86,62 +136,146 @@ class OptionsMenu extends MusicBeatState
 		if (curSelected >= textMenuItems.length)
 			curSelected = 0;
 
-		grpOptionsTexts.forEach(function(txt:FlxText)
-		{
-			txt.color = FlxColor.WHITE;
-
-			if (txt.ID == curSelected)
-				txt.color = FlxColor.YELLOW;
-		});
-
-		// TEMPORARY: Show if the Debug menu option is True or False
-		enabledText.forEach(function(EDTxt:FlxText){
-			EDTxt.color = FlxColor.WHITE;
-			
-			switch (curSelected) {
-				case 0:
-					if (STOptionsRewrite._variables.debug == false)
-						EDTxt.text = "FALSE";
-					else
-						EDTxt.text = "TRUE";
-			}
-		});
-
-		if (controls.ACCEPT){
+		if (controls.ACCEPT) {
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			
 			// Manual way of setting the values using a switch statement
 			// TODO: Get this shitty code out of here and make it actually good.
 			switch (curSelected) {
 				case 0:
-					if (STOptionsRewrite._variables.debug == false)
+					if (STOptionsRewrite._variables.debug == false) {
 						STOptionsRewrite._variables.debug = true;
-					else
+					} else {
 						STOptionsRewrite._variables.debug = false;
+					}
+				case 1:
+					if (STOptionsRewrite._variables.discordRPC == false) {
+						STOptionsRewrite._variables.discordRPC = true;
+					} else {
+						STOptionsRewrite._variables.discordRPC = false;
+					}
+				case 2:
+					if (STOptionsRewrite._variables.extraDialogue == false) {
+						STOptionsRewrite._variables.extraDialogue = true;
+					} else {
+						STOptionsRewrite._variables.extraDialogue = false;
+					}
+				case 3:
+					if (STOptionsRewrite._variables.extraSongs == false) {
+						STOptionsRewrite._variables.extraSongs = true;
+					} else {
+						STOptionsRewrite._variables.extraSongs = false;
+					}
+				case 4:
+					if (STOptionsRewrite._variables.inputMode == 0) {
+						//grpOptionsTexts.members[4].text = "Input Mode DFJK";
+						inputGraphic.animation.play("dfjk");
+						STOptionsRewrite._variables.inputMode = 1;
+					} else {
+						//grpOptionsTexts.members[4].text = "Input Mode WASD";
+						inputGraphic.animation.play("wasd");
+						STOptionsRewrite._variables.inputMode = 0;
+					}
+				case 5:
+					if (STOptionsRewrite._variables.instMode == false) {
+						STOptionsRewrite._variables.instMode = true;
+					} else {
+						STOptionsRewrite._variables.instMode = false;
+					}
+				case 6:
+					if (STOptionsRewrite._variables.lyrics == false) {
+						STOptionsRewrite._variables.lyrics = true;
+					} else {
+						STOptionsRewrite._variables.lyrics = false;
+					}
+				case 7:
+					if (STOptionsRewrite._variables.songIndicator == false) {
+						STOptionsRewrite._variables.songIndicator = true;
+					} else {
+						STOptionsRewrite._variables.songIndicator = false;
+					}
+				case 8:
+					if (STOptionsRewrite._variables.unknownIcons == false) {
+						STOptionsRewrite._variables.unknownIcons = true;
+					} else {
+						STOptionsRewrite._variables.unknownIcons = false;
+					}
 			}
 		}
 
-		if (controls.BACK)
-			FlxG.switchState(new MainMenuState());
-	}
-
-	function waitingInput():Void
-	{
-		if (FlxG.keys.getIsDown().length > 0)
-		{
-			PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxG.keys.getIsDown()[0].ID, null);
+		if (controls.BACK) {
+			STOptionsRewrite.Save();
+			FlxG.switchState(new NoticeSubState("HEY!\n\nMost options currently require a game restart to work properly!\n\nPress ENTER to continue."));
+			//FlxG.switchState(new MainMenuState());
 		}
-		// PlayerSettings.player1.controls.replaceBinding(Control)
-	}
 
-	var isSettingControl:Bool = false;
-
-	function changeBinding():Void
-	{
-		if (!isSettingControl)
-		{
-			isSettingControl = true;
+		// graphic updaters
+		if (STOptionsRewrite._variables.debug == false) {
+			grpOptionsIndicator.members[0].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[0].animation.play("true");
 		}
+
+		if (STOptionsRewrite._variables.discordRPC == false) {
+			grpOptionsIndicator.members[1].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[1].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.extraDialogue == false) {
+			grpOptionsIndicator.members[2].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[2].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.extraSongs == false) {
+			grpOptionsIndicator.members[3].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[3].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.inputMode == 0) {
+			inputGraphic.animation.play("wasd");
+		} else {
+			inputGraphic.animation.play("dfjk");
+		}
+
+		if (STOptionsRewrite._variables.instMode == false) {
+			grpOptionsIndicator.members[5].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[5].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.lyrics == false) {
+			grpOptionsIndicator.members[6].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[6].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.songIndicator == false) {
+			grpOptionsIndicator.members[7].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[7].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.unknownIcons == false) {
+			grpOptionsIndicator.members[8].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[8].animation.play("true");
+		}
+
+		// alpha shit
+		for (i in 0...textMenuItems.length) {
+			grpOptionsTexts.members[i].alpha = 0.6;
+			grpOptionsIndicator.members[i].alpha = 0.6;
+			inputGraphic.alpha = 0.6;
+		}
+
+		grpOptionsTexts.members[curSelected].alpha = 1;
+		grpOptionsIndicator.members[curSelected].alpha = 1;
+
+		if (curSelected == 4)
+			inputGraphic.alpha = 1;
 	}
 
 	function changeSelection(change:Int = 0)
