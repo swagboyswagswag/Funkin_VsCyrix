@@ -41,7 +41,6 @@ import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
-import Options.STOptions;
 import Lyric.SwagLyricSection;
 import STMetaFile.MetadataFile;
 
@@ -248,7 +247,7 @@ class PlayState extends MusicBeatState
 		}
 
 		// check for lyrics
-		if (STOptions.st_lyrics == true)
+		if (STOptionsRewrite._variables.lyrics == true)
 		{
 			try
 			{
@@ -317,7 +316,7 @@ class PlayState extends MusicBeatState
 		detailsPausedText = "Paused - " + detailsText;
 		
 		// Updating Discord Rich Presence.
-		if (STOptions.st_makeSpacesConsistent == true) {
+		if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 			DiscordClient.changePresence(detailsText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC);
 		} else {
 			DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -922,7 +921,7 @@ class PlayState extends MusicBeatState
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
 		missTxt = new FlxText(healthBarBG.x + healthBarBG.width - 464, healthBarBG.y + 30, 0, "", 20);
-		if (STOptions.st_outlineScore == true) {
+		if (STOptionsRewrite._variables.outlineScore == true) {
 			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK); // small things: outline this text
 			missTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		} else {
@@ -943,7 +942,7 @@ class PlayState extends MusicBeatState
 		lyricSpeakerIcon.scale.y = 0.85;
 		lyricSpeakerIcon.visible = false;
 
-		if (STOptions.st_lyrics == true) {
+		if (STOptionsRewrite._variables.lyrics == true) {
 			add(lyricSpeakerIcon);
 			add(lyricTxt);
 
@@ -974,9 +973,9 @@ class PlayState extends MusicBeatState
 		controlSchemeText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		controlSchemeText.scrollFactor.set();
 
-		if (STOptions.st_inputMode == 0) {
+		if (STOptionsRewrite._variables.inputMode == 0) {
 			controlSchemeText.text = "SCHEME: WASD";
-		} else if (STOptions.st_inputMode == 1) {
+		} else if (STOptionsRewrite._variables.inputMode == 1) {
 			controlSchemeText.text = "SCHEME: DFJK";
 		}
  		
@@ -1026,7 +1025,7 @@ class PlayState extends MusicBeatState
 		levelInfoArtist.alpha = 0;
 		levelInfoArtist.x = FlxG.width - (levelInfoArtist.width + 20);
 
-		if (STOptions.st_debug == true) {
+		if (STOptionsRewrite._variables.debug == true) {
 			add(conductorPosTxt);
 			add(lyricIndicatorTxt);
 			add(debugIndicatorTxt);
@@ -1035,7 +1034,7 @@ class PlayState extends MusicBeatState
 			add(iconP2txt);
 		}
 
-		if (STOptions.st_songIndicator == true) {
+		if (STOptionsRewrite._variables.songIndicator == true) {
 			add(levelInfo);
 			add(levelInfoIcon);
 			add(levelInfoArtist);
@@ -1084,7 +1083,7 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case "monster":
-					if (STOptions.st_monsterIntro == true) {
+					if (STOptionsRewrite._variables.monsterIntro == true) {
 						// most of this is copy past code from winter horrorland, but whatever the fuck
 						var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 						add(blackScreen);
@@ -1104,7 +1103,7 @@ class PlayState extends MusicBeatState
 									ease: FlxEase.quadInOut,
 									onComplete: function(twn:FlxTween)
 									{
-										if (STOptions.st_extraDialogue)
+										if (STOptionsRewrite._variables.extraDialogue)
 											doDialogue(doof);
 										else
 											startCountdown();
@@ -1113,7 +1112,7 @@ class PlayState extends MusicBeatState
 							});
 						});
 					} else {
-						if (STOptions.st_extraDialogue)
+						if (STOptionsRewrite._variables.extraDialogue)
 							doDialogue(doof);
 						else
 							startCountdown();
@@ -1141,7 +1140,7 @@ class PlayState extends MusicBeatState
 								ease: FlxEase.quadInOut,
 								onComplete: function(twn:FlxTween)
 								{
-									if (STOptions.st_extraDialogue)
+									if (STOptionsRewrite._variables.extraDialogue)
 										doDialogue(doof);
 									else
 										startCountdown();
@@ -1150,46 +1149,46 @@ class PlayState extends MusicBeatState
 						});
 					});
 				case 'tutorial':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'bopeebo':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'fresh':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'dadbattle':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'spookeez':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'south':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'pico':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'philly-nice':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'blammed':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'satin-panties':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'high':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'milf':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'cocoa':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'eggnog':
-					if (STOptions.st_extraDialogue)
+					if (STOptionsRewrite._variables.extraDialogue)
 						doDialogue(doof);
 				case 'senpai':
 					doDialogue(doof);
@@ -1359,7 +1358,7 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(levelInfoArtist, {alpha: 1, y: 58}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 					FlxTween.tween(levelInfoIcon, {alpha: 1, y: 20 - (levelInfoIcon.height / 2) + 16}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 
-					if (STOptions.st_fixWeek6CountSounds == true) {
+					if (STOptionsRewrite._variables.fixWeek6CountSounds == true) {
 						FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
 					} else {
 						FlxG.sound.play(Paths.sound('intro3'), 0.6);
@@ -1382,7 +1381,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 					
-					if (STOptions.st_fixWeek6CountSounds == true) {
+					if (STOptionsRewrite._variables.fixWeek6CountSounds == true) {
 						FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
 					} else {
 						FlxG.sound.play(Paths.sound('intro2'), 0.6);
@@ -1404,7 +1403,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 					
-					if (STOptions.st_fixWeek6CountSounds == true) {
+					if (STOptionsRewrite._variables.fixWeek6CountSounds == true) {
 						FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
 					} else {
 						FlxG.sound.play(Paths.sound('intro1'), 0.6);
@@ -1428,7 +1427,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 					
-					if (STOptions.st_fixWeek6CountSounds == true) {
+					if (STOptionsRewrite._variables.fixWeek6CountSounds == true) {
 						FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
 					} else {
 						FlxG.sound.play(Paths.sound('introGo'), 0.6);
@@ -1465,7 +1464,7 @@ class PlayState extends MusicBeatState
 		songLength = FlxG.sound.music.length;
 
 		// Updating Discord Rich Presence (with Time Left)
-		if (STOptions.st_makeSpacesConsistent == true) {
+		if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 			DiscordClient.changePresence(detailsText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC, true, songLength);
 		} else {
 			DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC, true, songLength);
@@ -1715,7 +1714,7 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer.finished)
 			{
-				if (STOptions.st_makeSpacesConsistent == true) {
+				if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 					DiscordClient.changePresence(detailsText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC, true, songLength - Conductor.songPosition);
 				} else {
 					DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC, true, songLength - Conductor.songPosition);
@@ -1723,7 +1722,7 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				if (STOptions.st_makeSpacesConsistent == true) {
+				if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 					DiscordClient.changePresence(detailsText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC);
 				} else {
 					DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -1742,7 +1741,7 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				if (STOptions.st_makeSpacesConsistent == true) {
+				if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 					DiscordClient.changePresence(detailsText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC, true, songLength - Conductor.songPosition);
 				} else {
 					DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC, true, songLength - Conductor.songPosition);
@@ -1750,7 +1749,7 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				if (STOptions.st_makeSpacesConsistent == true) {
+				if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 					DiscordClient.changePresence(detailsText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC);
 				} else {
 					DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -1767,7 +1766,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			if (STOptions.st_makeSpacesConsistent == true) {
+			if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 				DiscordClient.changePresence(detailsPausedText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC);
 			} else {
 				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -1813,7 +1812,7 @@ class PlayState extends MusicBeatState
 		// small things: unknown character debug
 		if (FlxG.keys.justPressed.EIGHT)
 		{
-			if (STOptions.st_debug == true) {
+			if (STOptionsRewrite._variables.debug == true) {
 				if (iconP1.animation.curAnim.name == 'unknown')
 				{
 					iconP1.animation.play(SONG.player1);
@@ -1843,7 +1842,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (STOptions.st_fixScoreLayout == true) {
+		if (STOptionsRewrite._variables.fixScoreLayout == true) {
 			scoreTxt.text = "Score: " + songScore;
 			missTxt.text = "Misses: " + misses;
 		} else {
@@ -1852,7 +1851,7 @@ class PlayState extends MusicBeatState
 		}
 
 		// small things: conductor pos debug text
-		if (STOptions.st_debug == true) {
+		if (STOptionsRewrite._variables.debug == true) {
 			conductorPosTxt.text = "Conductor Pos: " + Conductor.songPosition;
 			hpTxt.text = "HP: " + FlxMath.remapToRange(health, 0, 2, 0, 100) + "%";
 
@@ -1879,7 +1878,7 @@ class PlayState extends MusicBeatState
 				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		
 			#if desktop
-			if (STOptions.st_makeSpacesConsistent == true) {
+			if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 				DiscordClient.changePresence(detailsPausedText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC);
 			} else {
 				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -2055,7 +2054,7 @@ class PlayState extends MusicBeatState
 
 				if (dad.curCharacter == 'mom')
 				{
-					if (STOptions.st_instMode == true) {
+					if (STOptionsRewrite._variables.instMode == true) {
 						vocals.volume = 0;
 					} else {
 						vocals.volume = 1;
@@ -2137,7 +2136,7 @@ class PlayState extends MusicBeatState
 		if (curSong == 'Thorns')
 		{
 			if (isStoryMode == true) {
-				if (STOptions.st_unknownIcons == true) {
+				if (STOptionsRewrite._variables.unknownIcons == true) {
 					if (doIconCheck == true) {
 						if (Conductor.songPosition <= 0) {
 							iconP2.animation.play('unknown-pixel');
@@ -2156,7 +2155,7 @@ class PlayState extends MusicBeatState
 		if (curSong == 'Winter-Horrorland')
 		{
 			if (isStoryMode == true) {
-				if (STOptions.st_unknownIcons == true) {
+				if (STOptionsRewrite._variables.unknownIcons == true) {
 					if (doIconCheck == true) {
 						if (Conductor.songPosition <= 9200) {
 							iconP2.animation.play('unknown');
@@ -2169,7 +2168,7 @@ class PlayState extends MusicBeatState
 					}
 				}
 
-				if (STOptions.st_startWinterHorrorlandP2Invis == true) {
+				if (STOptionsRewrite._variables.startWHP2Invis == true) {
 					if (doP2Check == true) {
 						if (Conductor.songPosition <= 6000) {
 							dad.visible = false;
@@ -2194,7 +2193,7 @@ class PlayState extends MusicBeatState
 		// CHEAT = brandon's a pussy
 		if (controls.CHEAT)
 		{
-			if (STOptions.st_debug == true)
+			if (STOptionsRewrite._variables.debug == true)
 				health += 1;
 				trace("User is cheating!");
 		}
@@ -2216,7 +2215,7 @@ class PlayState extends MusicBeatState
 			
 			#if desktop
 			// Game Over doesn't get his own variable because it's only used here
-			if (STOptions.st_makeSpacesConsistent == true) {
+			if (STOptionsRewrite._variables.makeSpacesConsistent == true) {
 				DiscordClient.changePresence("Game Over - " + detailsText, StringTools.replace(SONG.song, "-", " ") + " (" + storyDifficultyText + ")", iconRPC);
 			} else {
 				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -2295,7 +2294,7 @@ class PlayState extends MusicBeatState
 					if (SONG.needsVoices)
 						vocals.volume = 1;
 
-					if (STOptions.st_instMode)
+					if (STOptionsRewrite._variables.instMode)
 						vocals.volume = 0;
 
 					daNote.kill();
@@ -2422,7 +2421,7 @@ class PlayState extends MusicBeatState
 	{
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
 		// boyfriend.playAnim('hey');
-		if (STOptions.st_instMode == true) {
+		if (STOptionsRewrite._variables.instMode == true) {
 			vocals.volume = 0;
 		} else {
 			vocals.volume = 1;
@@ -2578,7 +2577,7 @@ class PlayState extends MusicBeatState
 
 	private function keyShit():Void
 	{
-		if (STOptions.st_updatedInputSystem == true)
+		if (STOptionsRewrite._variables.updatedInputSystem == true)
 		{
 			// control arrays, order L D R U
 			var holdArray:Array<Bool> = [controls.NOTE_LEFT, controls.NOTE_DOWN, controls.NOTE_UP, controls.NOTE_RIGHT];
@@ -2703,7 +2702,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (STOptions.st_updatedInputSystem == false) {
+		if (STOptionsRewrite._variables.updatedInputSystem == false) {
 			// HOLDING
 			var up = controls.NOTE_UP;
 			var right = controls.NOTE_RIGHT;
@@ -3002,7 +3001,7 @@ class PlayState extends MusicBeatState
 
 			note.wasGoodHit = true;
 
-			if (STOptions.st_instMode == true) {
+			if (STOptionsRewrite._variables.instMode == true) {
 				vocals.volume = 0;
 			} else {
 				vocals.volume = 1;

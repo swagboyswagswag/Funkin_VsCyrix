@@ -27,7 +27,6 @@ import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
-import Options.STOptions;
 
 using StringTools;
 
@@ -69,7 +68,7 @@ class TitleState extends MusicBeatState
 		trace('NEWGROUNDS LOL');
 		#end
 
-		if (STOptions.st_logNg == true)
+		if (STOptionsRewrite._variables.logNG == true)
 		{
 			NGio.logEvent("STInit");
 		}
@@ -321,7 +320,7 @@ class TitleState extends MusicBeatState
 
 				if (version.trim() != NGio.GAME_VER_NUMS.trim() && !OutdatedSubState.leftState)
 				{
-					if (STOptions.st_disableFnfVersionCheck == false) {
+					if (STOptionsRewrite._variables.disableFNFVersionCheck == false) {
 						FlxG.switchState(new OutdatedSubState());
 						trace('OLD VERSION!');
 						trace('old ver');
@@ -329,8 +328,8 @@ class TitleState extends MusicBeatState
 						trace('cur ver');
 						trace(NGio.GAME_VER_NUMS.trim());
 					} else {
-						if (STOptions.st_noticeEnabled == true) {
-							if (STOptions.st_debug == false) {
+						if (STOptionsRewrite._variables.noticeEnabled == true) {
+							if (STOptionsRewrite._variables.debug == false) {
 								FlxG.switchState(new NoticeSubState());
 							} else {
 								FlxG.switchState(new MainMenuState());
@@ -342,8 +341,8 @@ class TitleState extends MusicBeatState
 				}
 				else
 				{
-					if (STOptions.st_noticeEnabled == true) {
-						if (STOptions.st_debug == false) {
+					if (STOptionsRewrite._variables.noticeEnabled == true) {
+						if (STOptionsRewrite._variables.debug == false) {
 							FlxG.switchState(new NoticeSubState());
 						} else {
 							FlxG.switchState(new MainMenuState());
@@ -403,7 +402,7 @@ class TitleState extends MusicBeatState
 
 		FlxG.log.add(curBeat);
 
-		if (STOptions.st_customIntro == false) {
+		if (STOptionsRewrite._variables.customIntro == false) {
 			switch (curBeat)
 			{
 				case 1:
@@ -454,7 +453,7 @@ class TitleState extends MusicBeatState
 				case 16:
 					skipIntro();
 			}
-		} else if (STOptions.st_customIntro == true) {
+		} else if (STOptionsRewrite._variables.customIntro == true) {
 			switch (curBeat) {
 				case 1:
 					createCoolText(['DX Studios']);

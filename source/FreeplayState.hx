@@ -12,7 +12,6 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
-import Options.STOptions;
 
 using StringTools;
 
@@ -66,7 +65,7 @@ class FreeplayState extends MusicBeatState
 			addWeek(['Bopeebo', 'Fresh', 'Dadbattle'], 1, ['dad']);
 
 		if (StoryMenuState.weekUnlocked[2] || isDebug)
-			if (STOptions.st_fixMonsterIconFreeplay == true) {
+			if (STOptionsRewrite._variables.fixMonsterIconFreeplay == true) {
 				addWeek(['Spookeez', 'South', 'Monster'], 2, ['spooky', 'spooky', 'monster']);
 			} else {
 				addWeek(['Spookeez', 'South', 'Monster'], 2, ['spooky']);

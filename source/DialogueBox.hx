@@ -1,6 +1,5 @@
 package;
 
-import Options.STOptions;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.text.FlxTypeText;
@@ -42,112 +41,112 @@ class DialogueBox extends FlxSpriteGroup
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'tutorial':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.music('Inst_Tutorial', 'tutorial'), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'bopeebo':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'fresh':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'spookeez':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'south':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'dadbattle':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'monster':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.music('Inst_Monster', 'week2'), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'pico':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'philly-nice':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'blammed':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'satin-panties':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'high':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'milf':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'cocoa':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					};
 				}
 			case 'eggnog':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				}
 			case 'winter-horrorland':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					if (PlayState.isStoryMode) {
 						FlxG.sound.playMusic(Paths.music('Inst_WinterHorrorland', 'week5'), 0.6);
 						FlxG.sound.music.fadeIn(1, 0, 0.8);
@@ -201,7 +200,7 @@ class DialogueBox extends FlxSpriteGroup
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'tutorial':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -210,7 +209,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'bopeebo':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -219,7 +218,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'fresh':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -228,7 +227,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'dadbattle':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -237,7 +236,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'spookeez':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -246,7 +245,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'south':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -255,7 +254,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'monster':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -264,7 +263,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'pico':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -273,7 +272,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'philly-nice':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -282,7 +281,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'blammed':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -291,7 +290,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'satin-panties':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -300,7 +299,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'high':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -309,7 +308,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'milf':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -318,7 +317,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'cocoa':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -327,7 +326,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'eggnog':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -336,7 +335,7 @@ class DialogueBox extends FlxSpriteGroup
 					box.y = (FlxG.height - box.height) + 80;
 				}
 			case 'winter-horrorland':
-				if (STOptions.st_extraDialogue) {
+				if (STOptionsRewrite._variables.extraDialogue) {
 					hasDialog = true;
 					box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
 					box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -509,52 +508,52 @@ class DialogueBox extends FlxSpriteGroup
 					switch (PlayState.SONG.song.toLowerCase())
 					{
 						case 'tutorial':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'bopeebo':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'fresh':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'dadbattle':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'spookeez':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'south':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'monster':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'pico':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'philly-nice':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'blammed':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'satin-panties':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'high':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'milf':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'cocoa':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'eggnog':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'winter-horrorland':
-							if (STOptions.st_extraDialogue)
+							if (STOptionsRewrite._variables.extraDialogue)
 								FlxG.sound.music.fadeOut(2.2, 0);
 						case 'senpai':
 							FlxG.sound.music.fadeOut(2.2, 0);
