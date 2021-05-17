@@ -11,6 +11,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 import Discord.DiscordClient;
+import STOptionsRewrite;
 
 class OptionsMenu extends MusicBeatState
 {
@@ -89,9 +90,9 @@ class OptionsMenu extends MusicBeatState
 			switch (txt.ID) {
 				case 0:
 					if (STOptionsRewrite._variables.debug == false)
-						EDTxt.text = "FALSE";
-					else
 						txt.color = FlxColor.RED;
+					else
+						txt.color = FlxColor.LIME;
 
 				// case 7:
 				// 	if (STOptions.st_inputMode == 0)
