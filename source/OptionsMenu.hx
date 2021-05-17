@@ -20,16 +20,11 @@ class OptionsMenu extends MusicBeatState
 
 	// var selector:FlxSprite = new FlxSprite().makeGraphic(5, 5, FlxColor.RED);
 	var grpOptionsTexts:FlxTypedGroup<Alphabet>;
+	var grpOptionsIndicator:FlxTypedGroup<FlxSprite>;
 
 	// TODO: Add better array for Small Thing's options.
 	var textMenuItems:Array<String> = [
-		'Debug Mode',
-		'Discord RPC',
-		'Extra Dialogue',
-		'Instrumental Mode',
-		'Lyrics',
-		'Song Indicator',
-		'Unknown Icons'
+		'Debug Mode'
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -52,12 +47,39 @@ class OptionsMenu extends MusicBeatState
 
 		for (i in 0...textMenuItems.length)
 		{
-			var optionText:Alphabet = new Alphabet(20, 20 + (i * 82), textMenuItems[i], true);
+			var optionText:Alphabet = new Alphabet(16, 20 + (i * 82), textMenuItems[i], true);
 			optionText.ID = i;
 
+			optionText.x += 70;
+			
 			grpOptionsTexts.add(optionText);
 		}
 		
+		// Options menu indicators
+		grpOptionsIndicator = new FlxTypedGroup<FlxSprite>();
+		add(grpOptionsIndicator);
+
+		for (i in 0...textMenuItems.length)
+		{
+			var optionIndicator:FlxSprite = new FlxSprite(16, 20 + (i * 82));
+			optionIndicator.ID = i;
+
+			optionIndicator.frames = Paths.getSparrowAtlas('st_ui_assets');
+			optionIndicator.animation.addByPrefix("true", "checkmark", 24, false);
+			optionIndicator.animation.addByPrefix("false", "xmark", 24, false);
+
+			optionIndicator.scale.x = 0.4;
+			optionIndicator.scale.y = 0.4;
+
+			/*
+			optionIndicator.x = optionIndicator.x - (optionIndicator.width / 2);
+			*/
+			optionIndicator.x -= 88;
+			optionIndicator.y -= 26;
+
+			grpOptionsIndicator.add(optionIndicator);
+		}
+
 		super.create();
 
 		// Yaknow what, fuck you! *un-substates your menu*
@@ -66,6 +88,11 @@ class OptionsMenu extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		/*
+		== IDS ==
+		0: Debug Mode
+		*/
+
 		super.update(elapsed);
 
 		if (controls.UP_P)
@@ -80,22 +107,34 @@ class OptionsMenu extends MusicBeatState
 		if (curSelected >= textMenuItems.length)
 			curSelected = 0;
 
-		if (controls.ACCEPT){
+		if (controls.ACCEPT) {
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			
 			// Manual way of setting the values using a switch statement
 			// TODO: Get this shitty code out of here and make it actually good.
 			switch (curSelected) {
 				case 0:
-					if (STOptionsRewrite._variables.debug == false)
+					if (STOptionsRewrite._variables.debug == false) {
 						STOptionsRewrite._variables.debug = true;
-					else
+						grpOptionsIndicator.members[0].animation.play("true");
+					} else {
 						STOptionsRewrite._variables.debug = false;
+						grpOptionsIndicator.members[0].animation.play("false");
+					}
 			}
 		}
 
-		if (controls.BACK)
+		if (controls.BACK) {
+			STOptionsRewrite.Save();
 			FlxG.switchState(new MainMenuState());
+		}
+
+		// graphic updater
+		if (STOptionsRewrite._variables.debug == false) {
+			grpOptionsIndicator.members[0].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[0].animation.play("true");
+		}
 	}
 
 	function changeSelection(change:Int = 0)
