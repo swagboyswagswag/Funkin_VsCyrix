@@ -1,6 +1,5 @@
 package;
 
-import Options.STOptions;
 import Controls.Control;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -89,43 +88,8 @@ class OptionsMenu extends MusicBeatState
 
 			switch (txt.ID) {
 				case 0:
-					if (STOptions.st_debug)
-						txt.color = FlxColor.LIME;
-					else
-						txt.color = FlxColor.RED;
-				
-				case 1:
-					if (STOptions.st_discordRpc)
-						txt.color = FlxColor.LIME;
-					else
-						txt.color = FlxColor.RED;
-
-				case 2:
-					if (STOptions.st_extraDialogue)
-						txt.color = FlxColor.LIME;
-					else
-						txt.color = FlxColor.RED;
-				case 3:
-					if (STOptions.st_instMode)
-						txt.color = FlxColor.LIME;
-					else
-						txt.color = FlxColor.RED;
-				
-				case 4:
-					if (STOptions.st_lyrics)
-						txt.color = FlxColor.LIME;
-					else
-						txt.color = FlxColor.RED;
-				
-				case 5:
-					if (STOptions.st_songIndicator)
-						txt.color = FlxColor.LIME;
-					else
-						txt.color = FlxColor.RED;
-				
-				case 6:
-					if (STOptions.st_unknownIcons)
-						txt.color = FlxColor.LIME;
+					if (STOptionsRewrite._variables.debug == false)
+						EDTxt.text = "FALSE";
 					else
 						txt.color = FlxColor.RED;
 
@@ -147,62 +111,10 @@ class OptionsMenu extends MusicBeatState
 			switch (curSelected) {
 				// I didn't wanna do this all manually, but, well, here we are.
 				case 0:
-					if (STOptions.st_debug == false)
-						
-						STOptions.st_debug = true;
+					if (STOptionsRewrite._variables.debug == false)
+						STOptionsRewrite._variables.debug = true;
 					else
-						STOptions.st_debug = false;
-				case 1:
-					if (STOptions.st_discordRpc == false) {
-						STOptions.st_discordRpc = true;
-						// TODO:
-						// add notice that the game needs to be restarted in order to re-enable rich presence.
-					}
-					else {
-						STOptions.st_discordRpc = false;
-						DiscordClient.shutdown();
-					}
-
-				case 2:
-					if (STOptions.st_extraDialogue == false)
-						STOptions.st_extraDialogue = true;
-					else
-						STOptions.st_extraDialogue = false;
-
-				case 3:
-					if (STOptions.st_instMode == false)
-						STOptions.st_instMode = true;
-					else
-						STOptions.st_instMode = false;
-
-				case 4:
-					if (STOptions.st_lyrics == false)
-						STOptions.st_lyrics = true;
-					else
-						STOptions.st_lyrics = false;
-
-				case 5:
-					if (STOptions.st_songIndicator == false)
-						STOptions.st_songIndicator = true;
-					else
-						STOptions.st_songIndicator = false;
-
-				case 6:
-					if (STOptions.st_unknownIcons == false)
-						STOptions.st_unknownIcons = true;
-					else
-						STOptions.st_unknownIcons = false;
-				
-				// case 7:
-				// 	if (STOptions.st_inputMode  == 0) {
-
-				// 		STOptions.st_inputMode = 1;
-				// 	}
-				// 	else {
-				// 		STOptions.st_inputMode = 0;
-				// 	}
-					
-
+						STOptionsRewrite._variables.debug = false;
 			}
 		}
 
