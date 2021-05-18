@@ -43,6 +43,7 @@ import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import Lyric.SwagLyricSection;
 import STMetaFile.MetadataFile;
+import STOptionsRewrite;
 
 using StringTools;
 
@@ -766,8 +767,8 @@ class PlayState extends MusicBeatState
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
 
-		if (STOptions.st_downscroll == true)
-			strumLine.y = FlxG.height - 165;
+		// if (STOptionsRewrite.st_downscroll == true)
+		// 	strumLine.y = FlxG.height - 165;
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
