@@ -32,7 +32,7 @@ class OptionsMenu extends MusicBeatState
 		'Lyrics',				// 6
 		'Song Indicator',		// 7
 		'Unknown Icons',		// 8
-		'Downcroll'				// 9
+		'Downscroll'			// 9
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
