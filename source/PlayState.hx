@@ -2368,7 +2368,6 @@ class PlayState extends MusicBeatState
 		var rating:FlxSprite = new FlxSprite();
 		var score:Int = 350;
 		var daRating:String = "sick";
-		notesHit += 1;
 
 		if (noteDiff > Conductor.safeZoneOffset * 0.9)
 		{
@@ -2388,6 +2387,9 @@ class PlayState extends MusicBeatState
 			daRating = 'good';
 			score = 200;
 			notesHit += 1 - 0.2;
+		}
+		else if (daRating == "sick") {
+			notesHit += 1;
 		}
 
 
@@ -2902,7 +2904,7 @@ class PlayState extends MusicBeatState
 			notesPlayed += 1;
 			accuracy = notesHit / notesPlayed * 100;
 
-			if (accuracy >= 100)	// Why the fuck didn't I think of this before??	Literally two lines
+			if (accuracy >= 100)
 				accuracy = 100;
 	}
 
@@ -2938,7 +2940,6 @@ class PlayState extends MusicBeatState
 			} else {
 				notesHit += 1;
 			}
-
 			if (note.noteData >= 0)
 				health += 0.023;
 			else
