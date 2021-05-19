@@ -79,7 +79,7 @@ class STOptionsRewrite
                 updatedInputSystem: true,
                 missCounter: true,
                 accuracyMeter: true,
-                downscroll: true   // TODO: Set this to FALSE before releasing
+                downscroll: false
             };
 
             // save defaults to file
