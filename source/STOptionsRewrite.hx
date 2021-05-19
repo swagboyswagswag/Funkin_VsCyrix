@@ -12,6 +12,7 @@ typedef Variables = {
     var customIntro:Bool;
     var disableFNFVersionCheck:Bool;
     var debug:Bool;
+    var discordRPC:Bool;
     var extraDialogue:Bool;
     var extraSongs:Bool;
     var fixMonsterIconFreeplay:Bool;
@@ -54,6 +55,7 @@ class STOptionsRewrite
                 customIntro: true,
                 debug: false,
                 disableFNFVersionCheck: true,
+                discordRPC: true,
                 extraDialogue: true,
                 extraSongs: true,
                 fixMonsterIconFreeplay: true,

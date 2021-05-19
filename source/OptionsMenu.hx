@@ -24,13 +24,14 @@ class OptionsMenu extends MusicBeatState
 	// TODO: Add better array for Small Thing's options.
 	var textMenuItems:Array<String> = [
 		'Debug Mode',			// 0
-		'Extra Dialogue', 		// 1
-		'Extra Songs',			// 2
-		'Input Mode',			// 3
-		'Instrumental Mode',	// 4
-		'Lyrics',				// 5
-		'Song Indicator',		// 6
-		'Unknown Icons'			// 7
+		'Discord RPC',			// 1
+		'Extra Dialogue', 		// 2
+		'Extra Songs',			// 3
+		'Input Mode',			// 4
+		'Instrumental Mode',	// 5
+		'Lyrics',				// 6
+		'Song Indicator',		// 7
+		'Unknown Icons'			// 8
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -95,7 +96,7 @@ class OptionsMenu extends MusicBeatState
 		}
 
 		// input mode graphic
-		inputGraphic = new FlxSprite(grpOptionsTexts.members[3].x, grpOptionsTexts.members[3].y);
+		inputGraphic = new FlxSprite(grpOptionsTexts.members[4].x, grpOptionsTexts.members[4].y);
 		inputGraphic.frames = Paths.getSparrowAtlas('st_ui_assets');
 		inputGraphic.animation.addByPrefix("wasd", "wasd", 24, false);
 		inputGraphic.animation.addByPrefix("dfjk", "dfjk", 24, false);
@@ -148,18 +149,24 @@ class OptionsMenu extends MusicBeatState
 						STOptionsRewrite._variables.debug = false;
 					}
 				case 1:
+					if (STOptionsRewrite._variables.discordRPC == false) {
+						STOptionsRewrite._variables.discordRPC = true;
+					} else {
+						STOptionsRewrite._variables.discordRPC = false;
+					}
+				case 2:
 					if (STOptionsRewrite._variables.extraDialogue == false) {
 						STOptionsRewrite._variables.extraDialogue = true;
 					} else {
 						STOptionsRewrite._variables.extraDialogue = false;
 					}
-				case 2:
+				case 3:
 					if (STOptionsRewrite._variables.extraSongs == false) {
 						STOptionsRewrite._variables.extraSongs = true;
 					} else {
 						STOptionsRewrite._variables.extraSongs = false;
 					}
-				case 3:
+				case 4:
 					if (STOptionsRewrite._variables.inputMode == 0) {
 						//grpOptionsTexts.members[4].text = "Input Mode DFJK";
 						inputGraphic.animation.play("dfjk");
@@ -169,25 +176,25 @@ class OptionsMenu extends MusicBeatState
 						inputGraphic.animation.play("wasd");
 						STOptionsRewrite._variables.inputMode = 0;
 					}
-				case 4:
+				case 5:
 					if (STOptionsRewrite._variables.instMode == false) {
 						STOptionsRewrite._variables.instMode = true;
 					} else {
 						STOptionsRewrite._variables.instMode = false;
 					}
-				case 5:
+				case 6:
 					if (STOptionsRewrite._variables.lyrics == false) {
 						STOptionsRewrite._variables.lyrics = true;
 					} else {
 						STOptionsRewrite._variables.lyrics = false;
 					}
-				case 6:
+				case 7:
 					if (STOptionsRewrite._variables.songIndicator == false) {
 						STOptionsRewrite._variables.songIndicator = true;
 					} else {
 						STOptionsRewrite._variables.songIndicator = false;
 					}
-				case 7:
+				case 8:
 					if (STOptionsRewrite._variables.unknownIcons == false) {
 						STOptionsRewrite._variables.unknownIcons = true;
 					} else {
@@ -209,16 +216,22 @@ class OptionsMenu extends MusicBeatState
 			grpOptionsIndicator.members[0].animation.play("true");
 		}
 
-		if (STOptionsRewrite._variables.extraDialogue == false) {
+		if (STOptionsRewrite._variables.discordRPC == false) {
 			grpOptionsIndicator.members[1].animation.play("false");
 		} else {
 			grpOptionsIndicator.members[1].animation.play("true");
 		}
 
-		if (STOptionsRewrite._variables.extraSongs == false) {
+		if (STOptionsRewrite._variables.extraDialogue == false) {
 			grpOptionsIndicator.members[2].animation.play("false");
 		} else {
 			grpOptionsIndicator.members[2].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.extraSongs == false) {
+			grpOptionsIndicator.members[3].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[3].animation.play("true");
 		}
 
 		if (STOptionsRewrite._variables.inputMode == 0) {
@@ -228,27 +241,27 @@ class OptionsMenu extends MusicBeatState
 		}
 
 		if (STOptionsRewrite._variables.instMode == false) {
-			grpOptionsIndicator.members[4].animation.play("false");
-		} else {
-			grpOptionsIndicator.members[4].animation.play("true");
-		}
-
-		if (STOptionsRewrite._variables.lyrics == false) {
 			grpOptionsIndicator.members[5].animation.play("false");
 		} else {
 			grpOptionsIndicator.members[5].animation.play("true");
 		}
 
-		if (STOptionsRewrite._variables.songIndicator == false) {
+		if (STOptionsRewrite._variables.lyrics == false) {
 			grpOptionsIndicator.members[6].animation.play("false");
 		} else {
 			grpOptionsIndicator.members[6].animation.play("true");
 		}
 
-		if (STOptionsRewrite._variables.unknownIcons == false) {
+		if (STOptionsRewrite._variables.songIndicator == false) {
 			grpOptionsIndicator.members[7].animation.play("false");
 		} else {
 			grpOptionsIndicator.members[7].animation.play("true");
+		}
+
+		if (STOptionsRewrite._variables.unknownIcons == false) {
+			grpOptionsIndicator.members[8].animation.play("false");
+		} else {
+			grpOptionsIndicator.members[8].animation.play("true");
 		}
 
 		// alpha shit
