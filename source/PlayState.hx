@@ -1834,7 +1834,8 @@ class PlayState extends MusicBeatState
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
 
 		lyricTxt.x = (healthBar.getMidpoint().x - 100) - 70;
-		lyricTxt.y = (healthBar.getMidpoint().y - 175);
+		lyricTxt.y = (STOptionsRewrite._variables.downscroll ? healthBar.getMidpoint().y + 175 : healthBar.getMidpoint().y - 175);
+		// ^^ TSG may want to position this to his liking, I'm not very good with UI.
 
 		lyricSpeakerIcon.x = lyricTxt.x + (lyricTxt.width / 2) - 64;
 		lyricSpeakerIcon.y = lyricTxt.y - 112;
