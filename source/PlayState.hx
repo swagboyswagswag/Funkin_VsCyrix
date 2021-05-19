@@ -779,9 +779,6 @@ class PlayState extends MusicBeatState
 
 		strumLine.scrollFactor.set();
 
-		// if (STOptionsRewrite.st_downscroll == true)
-		// 	strumLine.y = FlxG.height - 165;
-
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
 
