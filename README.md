@@ -10,6 +10,7 @@ Friday Night Funkin' Small Things is an enhancement mod for Friday Night Funkin'
 ## CREDITS
 - [AyeTSG](https://twitter.com/AyeTSG) (Programming)
 - Pirlo (Extra pixel-art assets)
+- [Zeexel](https://twitter.com/Zeexel32) (Programming)
 
 ## OTHER SHOUTOUTS
 - [ActualMandM](https://twitter.com/ActualMandM) (Fixing a bug where the pixel-ready sounds would not be used in week6)
