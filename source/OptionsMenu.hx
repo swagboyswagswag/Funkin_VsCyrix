@@ -31,7 +31,8 @@ class OptionsMenu extends MusicBeatState
 		'Instrumental Mode',	// 5
 		'Lyrics',				// 6
 		'Song Indicator',		// 7
-		'Unknown Icons'			// 8
+		'Unknown Icons',		// 8
+		'Downcroll'				// 9
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -139,9 +140,8 @@ class OptionsMenu extends MusicBeatState
 		if (controls.ACCEPT) {
 			FlxG.sound.play(Paths.sound('confirmMenu'));
 			
-			// Manual way of setting the values using a switch statement
-			// TODO: Get this shitty code out of here and make it actually good.
 			switch (curSelected) {
+				// I didn't wanna do this all manually, but, well, here we are.
 				case 0:
 					if (STOptionsRewrite._variables.debug == false) {
 						STOptionsRewrite._variables.debug = true;
@@ -200,6 +200,11 @@ class OptionsMenu extends MusicBeatState
 					} else {
 						STOptionsRewrite._variables.unknownIcons = false;
 					}
+				case 9:
+					if (STOptionsRewrite._variables.downscroll == false)
+						STOptionsRewrite._variables.downscroll = true;
+					else
+						STOptionsRewrite._variables.downscroll = false;
 			}
 		}
 
@@ -263,6 +268,11 @@ class OptionsMenu extends MusicBeatState
 		} else {
 			grpOptionsIndicator.members[8].animation.play("true");
 		}
+
+		if (STOptionsRewrite._variables.downscroll == false)
+			grpOptionsIndicator.members[9].animation.play("false");
+		else
+			grpOptionsIndicator.members[9].animation.play("true");
 
 		// alpha shit
 		for (i in 0...textMenuItems.length) {

@@ -42,6 +42,7 @@ class STOptions
 	public static var st_unknownIcons:Bool = true;					// Small Things: Enable the unknown icons
 	public static var st_updatedInputSystem:Bool = true;			// Small Things: MtH Input re-write
 	public static var st_missCounter:Bool = true;					// Small Things: Zeexel's Miss Counter
+	public static var st_downscroll:Bool = false;					// Small Things: Downscroll
 
 	public static function readSTOptionsFromFile()
 	{
