@@ -43,6 +43,7 @@ import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import Lyric.SwagLyricSection;
 import STMetaFile.MetadataFile;
+import STOptionsRewrite;
 
 using StringTools;
 
@@ -83,6 +84,11 @@ class PlayState extends MusicBeatState
 	private var health:Float = 1;
 	private var combo:Int = 0;
 	private var misses:Int = 0;		// Small Things: Miss counter
+
+	// Small Things: Accuracy Revision! [zeexel]
+	private var accuracy:Float = 0.00;
+	private var notesHit:Float = 0;
+	private var notesPlayed:Int = 0;
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
@@ -133,6 +139,7 @@ class PlayState extends MusicBeatState
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
 	var missTxt:FlxText;	// Small Things: Miss counter text
+	var accTxt:FlxText;		// Small Things: Accuracy Text
 
 	// small things: debug texts
 	var conductorPosTxt:FlxText;
@@ -861,7 +868,13 @@ class PlayState extends MusicBeatState
 
 		Conductor.songPosition = -5000;
 
-		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
+		if (STOptionsRewrite._variables.downscroll)
+			strumLine = new FlxSprite(0, 570).makeGraphic(FlxG.width, 10);
+		else
+			strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
+
+
+
 		strumLine.scrollFactor.set();
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
@@ -896,7 +909,11 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+		if (STOptionsRewrite._variables.downscroll)
+			healthBarBG = new FlxSprite(0, FlxG.height * 0.1).loadGraphic(Paths.image('healthBar'));
+		else
+			healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
@@ -921,17 +938,21 @@ class PlayState extends MusicBeatState
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
 		missTxt = new FlxText(healthBarBG.x + healthBarBG.width - 464, healthBarBG.y + 30, 0, "", 20);
+		accTxt = new FlxText(healthBarBG.x + healthBarBG.width - 345, healthBarBG.y + 30, 0, "", 20);
 		if (STOptionsRewrite._variables.outlineScore == true) {
 			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK); // small things: outline this text
 			missTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			accTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		} else {
 			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
 			missTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
+			accTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
 		}
 		scoreTxt.scrollFactor.set();
 		missTxt.scrollFactor.set();
 		add(scoreTxt);
 		add(missTxt);
+		add(accTxt);
 
 		lyricTxt = new FlxText(healthBar.x, healthBar.y, 320, "[PLACEHOLDER]", 28);
 		lyricTxt.setFormat(Paths.font("vcr.ttf"), 28, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1050,6 +1071,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		missTxt.cameras = [camHUD];
+		accTxt.cameras = [camHUD];
 		conductorPosTxt.cameras = [camHUD];
 		hpTxt.cameras = [camHUD];
 		lyricIndicatorTxt.cameras = [camHUD];
@@ -1845,9 +1867,11 @@ class PlayState extends MusicBeatState
 		if (STOptionsRewrite._variables.fixScoreLayout == true) {
 			scoreTxt.text = "Score: " + songScore;
 			missTxt.text = "Misses: " + misses;
+			accTxt.text = "Accuracy: " + truncateFloat(accuracy, 2) + "%";
 		} else {
 			scoreTxt.text = "Score:" + songScore;
 			missTxt.text = "Misses:" + misses;
+			accTxt.text = "Accuracy:" + truncateFloat(accuracy, 2) + "%";
 		}
 
 		// small things: conductor pos debug text
@@ -1860,6 +1884,9 @@ class PlayState extends MusicBeatState
 
 			missTxt.x = 10;
 			missTxt.y = 84;
+
+			accTxt.x = 10;
+			accTxt.y = 104;
 		}
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
@@ -1910,7 +1937,8 @@ class PlayState extends MusicBeatState
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
 
 		lyricTxt.x = (healthBar.getMidpoint().x - 100) - 70;
-		lyricTxt.y = (healthBar.getMidpoint().y - 175);
+		lyricTxt.y = (STOptionsRewrite._variables.downscroll ? healthBar.getMidpoint().y + 175 : healthBar.getMidpoint().y - 175);
+		// ^^ TSG may want to position this to his liking, I'm not very good with UI.
 
 		lyricSpeakerIcon.x = lyricTxt.x + (lyricTxt.width / 2) - 64;
 		lyricSpeakerIcon.y = lyricTxt.y - 112;
@@ -2250,8 +2278,13 @@ class PlayState extends MusicBeatState
 					daNote.active = true;
 				}
 
-				daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
+				// daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
+				if (STOptionsRewrite._variables.downscroll)
+					daNote.y = (strumLine.y + (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
+				else
+					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
+			
 				// i am so fucking sorry for this if condition
 				if (daNote.isSustainNote
 					&& daNote.y + daNote.offset.y <= strumLine.y + Note.swagWidth / 2
@@ -2305,7 +2338,8 @@ class PlayState extends MusicBeatState
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
-				if (daNote.y < -daNote.height)
+				// This was literally the key to adding downscroll holy shit
+				if (STOptionsRewrite._variables.downscroll ? (daNote.y > strumLine.y + daNote.height) : (daNote.y < -daNote.height))
 				{
 					if (daNote.tooLate || !daNote.wasGoodHit)
 					{
@@ -2313,6 +2347,7 @@ class PlayState extends MusicBeatState
 						// ST: Lower song score when not pressing keys at all
 						songScore -= 10;
 						misses++;
+						notesHit -= 1;	// >:( bad player! No accuracy increase for you!
 						vocals.volume = 0;
 					}
 
@@ -2322,6 +2357,7 @@ class PlayState extends MusicBeatState
 					daNote.kill();
 					notes.remove(daNote, true);
 					daNote.destroy();
+					updateAccuracy();
 				}
 			});
 		}
@@ -2420,6 +2456,7 @@ class PlayState extends MusicBeatState
 	private function popUpScore(strumtime:Float):Void
 	{
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
+
 		// boyfriend.playAnim('hey');
 		if (STOptionsRewrite._variables.instMode == true) {
 			vocals.volume = 0;
@@ -2437,21 +2474,26 @@ class PlayState extends MusicBeatState
 		var rating:FlxSprite = new FlxSprite();
 		var score:Int = 350;
 		var daRating:String = "sick";
+		notesHit += 1;
 
 		if (noteDiff > Conductor.safeZoneOffset * 0.9)
 		{
 			daRating = 'shit';
 			score = 50;
+			misses++;
+			notesHit += 1 - 0.9;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
 			daRating = 'bad';
 			score = 100;
+			notesHit += 1 - 0.75;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 		{
 			daRating = 'good';
 			score = 200;
+			notesHit += 1 - 0.2;
 		}
 
 
@@ -2477,7 +2519,11 @@ class PlayState extends MusicBeatState
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
-		rating.y -= 60;
+
+		if (STOptionsRewrite._variables.downscroll)
+			rating.y += 350;
+		else
+			rating.y -= 60;
 		rating.acceleration.y = 550;
 		rating.velocity.y -= FlxG.random.int(140, 175);
 		rating.velocity.x -= FlxG.random.int(0, 10);
@@ -2932,6 +2978,8 @@ class PlayState extends MusicBeatState
 				case 3:
 					boyfriend.playAnim('singRIGHTmiss', true);
 			}
+
+			updateAccuracy();
 		}
 	}
 
@@ -2954,6 +3002,27 @@ class PlayState extends MusicBeatState
 			noteMiss(3);
 	}
 
+	// Small Things: Accuracy
+	function updateAccuracy()
+	{
+			notesPlayed += 1;
+			accuracy = notesHit / notesPlayed * 100;
+
+			if (accuracy >= 100)	// Why the fuck didn't I think of this before??	Literally two lines
+				accuracy = 100;
+	}
+
+	
+	// Prevents the accuracy counter from looking like this:
+	// 64.92938219312392921
+	function truncateFloat(number:Float, precision:Int):Float
+	{
+		var num = number;
+		num = num * Math.pow(10, precision);
+		num = Math.round(num) / Math.pow(10, precision);
+		return num;		// Returns a nice 64.92!
+	}
+
 	function noteCheck(keyP:Bool, note:Note):Void
 	{
 		if (keyP)
@@ -2972,6 +3041,8 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
+			} else {
+				notesHit += 1;
 			}
 
 			if (note.noteData >= 0)
@@ -3012,6 +3083,7 @@ class PlayState extends MusicBeatState
 				note.kill();
 				notes.remove(note, true);
 				note.destroy();
+				updateAccuracy();
 			}
 		}
 	}
