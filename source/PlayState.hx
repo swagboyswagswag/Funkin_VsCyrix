@@ -85,6 +85,11 @@ class PlayState extends MusicBeatState
 	private var combo:Int = 0;
 	private var misses:Int = 0;		// Small Things: Miss counter
 
+	// Small Things: Accuracy Revision! [zeexel]
+	private var accuracy:Float = 0.00;
+	private var notesHit:Float = 0;
+	private var notesPlayed:Int = 0;
+
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
 
@@ -129,6 +134,7 @@ class PlayState extends MusicBeatState
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
 	var missTxt:FlxText;	// Small Things: Miss counter text
+	var accTxt:FlxText;		// Small Things: Accuracy Text
 
 	// small things: debug texts
 	var conductorPosTxt:FlxText;
@@ -827,17 +833,21 @@ class PlayState extends MusicBeatState
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
 		missTxt = new FlxText(healthBarBG.x + healthBarBG.width - 464, healthBarBG.y + 30, 0, "", 20);
+		accTxt = new FlxText(healthBarBG.x + healthBarBG.width - 345, healthBarBG.y + 30, 0, "", 20);
 		if (STOptionsRewrite._variables.outlineScore == true) {
 			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK); // small things: outline this text
 			missTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			accTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		} else {
 			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
 			missTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
+			accTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
 		}
 		scoreTxt.scrollFactor.set();
 		missTxt.scrollFactor.set();
 		add(scoreTxt);
 		add(missTxt);
+		add(accTxt);
 
 		lyricTxt = new FlxText(healthBar.x, healthBar.y, 320, "[PLACEHOLDER]", 28);
 		lyricTxt.setFormat(Paths.font("vcr.ttf"), 28, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -956,6 +966,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		missTxt.cameras = [camHUD];
+		accTxt.cameras = [camHUD];
 		conductorPosTxt.cameras = [camHUD];
 		hpTxt.cameras = [camHUD];
 		lyricIndicatorTxt.cameras = [camHUD];
@@ -1743,9 +1754,11 @@ class PlayState extends MusicBeatState
 		if (STOptionsRewrite._variables.fixScoreLayout == true) {
 			scoreTxt.text = "Score: " + songScore;
 			missTxt.text = "Misses: " + misses;
+			accTxt.text = "Accuracy: " + truncateFloat(accuracy, 2) + "%";
 		} else {
 			scoreTxt.text = "Score:" + songScore;
 			missTxt.text = "Misses:" + misses;
+			accTxt.text = "Accuracy:" + truncateFloat(accuracy, 2) + "%";
 		}
 
 		// small things: conductor pos debug text
@@ -1758,6 +1771,9 @@ class PlayState extends MusicBeatState
 
 			missTxt.x = 10;
 			missTxt.y = 84;
+
+			accTxt.x = 10;
+			accTxt.y = 104;
 		}
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
@@ -2211,6 +2227,7 @@ class PlayState extends MusicBeatState
 						// ST: Lower song score when not pressing keys at all
 						songScore -= 10;
 						misses++;
+						notesHit -= 1;	// >:( bad player! No accuracy increase for you!
 						vocals.volume = 0;
 					}
 
@@ -2220,6 +2237,7 @@ class PlayState extends MusicBeatState
 					daNote.kill();
 					notes.remove(daNote, true);
 					daNote.destroy();
+					updateAccuracy();
 				}
 			});
 		}
@@ -2318,6 +2336,7 @@ class PlayState extends MusicBeatState
 	private function popUpScore(strumtime:Float):Void
 	{
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
+
 		// boyfriend.playAnim('hey');
 		if (STOptionsRewrite._variables.instMode == true) {
 			vocals.volume = 0;
@@ -2335,21 +2354,26 @@ class PlayState extends MusicBeatState
 		var rating:FlxSprite = new FlxSprite();
 		var score:Int = 350;
 		var daRating:String = "sick";
+		notesHit += 1;
 
 		if (noteDiff > Conductor.safeZoneOffset * 0.9)
 		{
 			daRating = 'shit';
 			score = 50;
+			misses++;
+			notesHit += 1 - 0.9;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
 			daRating = 'bad';
 			score = 100;
+			notesHit += 1 - 0.75;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 		{
 			daRating = 'good';
 			score = 200;
+			notesHit += 1 - 0.2;
 		}
 
 
@@ -2830,6 +2854,8 @@ class PlayState extends MusicBeatState
 				case 3:
 					boyfriend.playAnim('singRIGHTmiss', true);
 			}
+
+			updateAccuracy();
 		}
 	}
 
@@ -2852,6 +2878,27 @@ class PlayState extends MusicBeatState
 			noteMiss(3);
 	}
 
+	// Small Things: Accuracy
+	function updateAccuracy()
+	{
+			notesPlayed += 1;
+			accuracy = notesHit / notesPlayed * 100;
+
+			if (accuracy >= 100)	// Why the fuck didn't I think of this before??	Literally two lines
+				accuracy = 100;
+	}
+
+	
+	// Prevents the accuracy counter from looking like this:
+	// 64.92938219312392921
+	function truncateFloat(number:Float, precision:Int):Float
+	{
+		var num = number;
+		num = num * Math.pow(10, precision);
+		num = Math.round(num) / Math.pow(10, precision);
+		return num;		// Returns a nice 64.92!
+	}
+
 	function noteCheck(keyP:Bool, note:Note):Void
 	{
 		if (keyP)
@@ -2870,6 +2917,8 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
+			} else {
+				notesHit += 1;
 			}
 
 			if (note.noteData >= 0)
@@ -2910,6 +2959,7 @@ class PlayState extends MusicBeatState
 				note.kill();
 				notes.remove(note, true);
 				note.destroy();
+				updateAccuracy();
 			}
 		}
 	}

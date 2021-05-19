@@ -33,6 +33,7 @@ typedef Variables = {
     var unknownIcons:Bool;
     var updatedInputSystem:Bool;
     var missCounter:Bool;
+    var accuracyMeter:Bool;
 }
 
 class STOptionsRewrite
@@ -75,7 +76,8 @@ class STOptionsRewrite
                 startWHP2Invis: true,
                 unknownIcons: true,
                 updatedInputSystem: true,
-                missCounter: true
+                missCounter: true,
+                accuracyMeter: true
             };
 
             // save defaults to file
