@@ -1,7 +1,6 @@
 package;
 
 #if desktop
-import Discord.DiscordClient;
 import sys.thread.Thread;
 #end
 import flixel.FlxG;
@@ -98,14 +97,6 @@ class TitleState extends MusicBeatState
 		{
 			startIntro();
 		});
-		#end
-
-		#if desktop
-		DiscordClient.initialize();
-		
-		Application.current.onExit.add (function (exitCode) {
-			DiscordClient.shutdown();
-		 });
 		#end
 	}
 
