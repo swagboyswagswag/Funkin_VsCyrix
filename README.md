@@ -8,7 +8,6 @@ This is the repository for the Friday Night Funkin: VS Cyrix Mod.
 As word spreads of your many adventures, a message comes in from the music producer Cyrix! He wants you in his studio, and is ready to mix up some new tracks! You ready to get funky?
 
 ## CREDITS
-
 - [Kallionic](https://twitter.com/RisingRyota) (Trailer Editor)
 - [Matt$](https://twitter.com/matt_currency) (Composer / Charter / Director)
 - [AetherDX](https://twitter.com/AetherDX) (Co-Director / Programmer)
@@ -17,6 +16,7 @@ As word spreads of your many adventures, a message comes in from the music produ
 - [SodaReishii](https://twitter.com/SodaReishii) (Extra BF Portraits Artist)
 - [TokyoGalaxy](https://twitter.com/TokyoGalaxyOG) (Menu Background Artist)
 - [KazoFox](https://twitter.com/KazoFox) (Logo Artist)
+- [Zeexel](https://twitter.com/Zeexel32) (Programming)
 
 ## PUBLISHING
 VS Cyrix is produced and published by DX Studios.
