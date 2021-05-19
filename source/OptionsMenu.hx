@@ -31,7 +31,8 @@ class OptionsMenu extends MusicBeatState
 		'Instrumental Mode',	// 5
 		'Lyrics',				// 6
 		'Song Indicator',		// 7
-		'Unknown Icons'			// 8
+		'Unknown Icons',		// 8
+		'Downcroll'				// 9
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
@@ -199,6 +200,11 @@ class OptionsMenu extends MusicBeatState
 					} else {
 						STOptionsRewrite._variables.unknownIcons = false;
 					}
+				case 9:
+					if (STOptionsRewrite._variables.downscroll == false)
+						STOptionsRewrite._variables.downscroll = true;
+					else
+						STOptionsRewrite._variables.downscroll = false;
 			}
 		}
 
@@ -262,6 +268,11 @@ class OptionsMenu extends MusicBeatState
 		} else {
 			grpOptionsIndicator.members[8].animation.play("true");
 		}
+
+		if (STOptionsRewrite._variables.downscroll == false)
+			grpOptionsIndicator.members[9].animation.play("false");
+		else
+			grpOptionsIndicator.members[9].animation.play("true");
 
 		// alpha shit
 		for (i in 0...textMenuItems.length) {

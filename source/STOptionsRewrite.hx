@@ -34,6 +34,7 @@ typedef Variables = {
     var updatedInputSystem:Bool;
     var missCounter:Bool;
     var accuracyMeter:Bool;
+    var downscroll:Bool;
 }
 
 class STOptionsRewrite
@@ -77,7 +78,8 @@ class STOptionsRewrite
                 unknownIcons: true,
                 updatedInputSystem: true,
                 missCounter: true,
-                accuracyMeter: true
+                accuracyMeter: true,
+                downscroll: true   // TODO: Set this to FALSE before releasing
             };
 
             // save defaults to file
