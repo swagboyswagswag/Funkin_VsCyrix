@@ -773,7 +773,7 @@ class PlayState extends MusicBeatState
 		if (STOptionsRewrite._variables.downscroll)
 			strumLine = new FlxSprite(0, 570).makeGraphic(FlxG.width, 10);
 		else
-			strumLine = new FlxSprite(0, 30).makeGraphic(FlxG.width, 10);
+			strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 
 
 
