@@ -124,7 +124,7 @@ class Note extends FlxSprite
 		{
 			noteScore * 0.2;
 			alpha = 0.6;
-			flipY = STOptionsRewrite._variables.downscroll;	
+			flipY = STOptionsRewrite._variables.downscroll;
 
 			x += width / 2;
 
@@ -190,12 +190,6 @@ class Note extends FlxSprite
 
 			if (strumTime <= Conductor.songPosition)
 				wasGoodHit = true;
-		}
-
-		if (tooLate)
-		{
-			if (alpha > 0.3)
-				alpha = 0.3;
 		}
 	}
 }
