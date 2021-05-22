@@ -212,10 +212,12 @@ class TitleState extends MusicBeatState
 		dxSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('dx_team'));
 		add(dxSpr);
 		dxSpr.visible = false;
-		dxSpr.setGraphicSize(Std.int(dxSpr.width * 0.3));
+		dxSpr.setGraphicSize(Std.int(dxSpr.width * 0.2));
 		dxSpr.updateHitbox();
 		dxSpr.screenCenter(X);
 		dxSpr.antialiasing = true;
+
+		// TODO: make the dx team sprite bigger by moving the text higher up
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
