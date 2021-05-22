@@ -779,6 +779,9 @@ class PlayState extends MusicBeatState
 
 		strumLine.scrollFactor.set();
 
+		if (STOptionsRewrite._variables.downscroll)
+			strumLine.y = FlxG.height - 165;
+
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
 
@@ -814,7 +817,7 @@ class PlayState extends MusicBeatState
 		if (STOptionsRewrite._variables.downscroll)
 			healthBarBG = new FlxSprite(0, FlxG.height * 0.1).loadGraphic(Paths.image('healthBar'));
 		else
-			healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+			healthBarBG = new FlxSprite(0, FlxG.height * 0.875).loadGraphic(Paths.image('healthBar'));
 
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
@@ -2180,16 +2183,34 @@ class PlayState extends MusicBeatState
 					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 			
 				// i am so fucking sorry for this if condition
-				if (daNote.isSustainNote
-					&& daNote.y + daNote.offset.y <= strumLine.y + Note.swagWidth / 2
-					&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
-				{
-					var swagRect = new FlxRect(0, strumLine.y + Note.swagWidth / 2 - daNote.y, daNote.width * 2, daNote.height * 2);
-					swagRect.y /= daNote.scale.y;
-					swagRect.height -= swagRect.y;
+				
 
-					daNote.clipRect = swagRect;
+				// I really hope this is rewritten when Week 7 comes out..
+				if (STOptionsRewrite._variables.downscroll)
+				{
+					if (daNote.isSustainNote
+						&& daNote.y + daNote.offset.y >= strumLine.y + Note.swagWidth / 2
+						&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+					{
+						var swagRect = new FlxRect(0, strumLine.y + Note.swagWidth / 2 + daNote.y, daNote.width * 2, daNote.height * 8);
+						swagRect.y /= daNote.scale.y;
+						swagRect.height -= swagRect.y;
+
+						daNote.clipRect = swagRect;
+					}
+				} else {
+					if (daNote.isSustainNote
+						&& daNote.y + daNote.offset.y <= strumLine.y + Note.swagWidth / 2
+						&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+					{
+						var swagRect = new FlxRect(0, strumLine.y + Note.swagWidth / 2 - daNote.y, daNote.width * 2, daNote.height * 2);
+						swagRect.y /= daNote.scale.y;
+						swagRect.height -= swagRect.y;
+	
+						daNote.clipRect = swagRect;
+					}
 				}
+
 
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
@@ -2229,11 +2250,13 @@ class PlayState extends MusicBeatState
 					daNote.destroy();
 				}
 
+
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
+
 				// This was literally the key to adding downscroll holy shit
-				if (STOptionsRewrite._variables.downscroll ? (daNote.y > strumLine.y + daNote.height) : (daNote.y < -daNote.height))
+				if (STOptionsRewrite._variables.downscroll ? (daNote.y > strumLine.y + daNote.height) : (daNote.y < strumLine.y - daNote.height))
 				{
 					if (daNote.tooLate || !daNote.wasGoodHit)
 					{
@@ -2248,8 +2271,6 @@ class PlayState extends MusicBeatState
 					daNote.active = false;
 					daNote.visible = false;
 
-					daNote.kill();
-					notes.remove(daNote, true);
 					daNote.destroy();
 					updateAccuracy();
 				}
@@ -3094,7 +3115,7 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 		{
-			notes.sort(FlxSort.byY, FlxSort.DESCENDING);
+			notes.sort(FlxSort.byY, (STOptionsRewrite._variables.downscroll ? FlxSort.ASCENDING : FlxSort.DESCENDING));
 		}
 
 		if (SONG.notes[Math.floor(curStep / 16)] != null)
