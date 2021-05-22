@@ -212,12 +212,12 @@ class TitleState extends MusicBeatState
 		dxSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('dx_team'));
 		add(dxSpr);
 		dxSpr.visible = false;
-		dxSpr.setGraphicSize(Std.int(dxSpr.width * 0.2));
+		dxSpr.scale.x = 0.3;
+		dxSpr.scale.y = 0.3;
+		dxSpr.y += -96;
 		dxSpr.updateHitbox();
 		dxSpr.screenCenter(X);
 		dxSpr.antialiasing = true;
-
-		// TODO: make the dx team sprite bigger by moving the text higher up
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
@@ -353,23 +353,33 @@ class TitleState extends MusicBeatState
 		super.update(elapsed);
 	}
 
-	function createCoolText(textArray:Array<String>)
+	function createCoolText(textArray:Array<String>, devTeamMode:Bool = false)
 	{
 		for (i in 0...textArray.length)
 		{
 			var money:Alphabet = new Alphabet(0, 0, textArray[i], true, false);
 			money.screenCenter(X);
 			money.y += (i * 60) + 200;
+
+			if (devTeamMode == true) {
+				money.y += -150;
+			}
+
 			credGroup.add(money);
 			textGroup.add(money);
 		}
 	}
 
-	function addMoreText(text:String)
+	function addMoreText(text:String, devTeamMode:Bool = false)
 	{
 		var coolText:Alphabet = new Alphabet(0, 0, text, true, false);
 		coolText.screenCenter(X);
 		coolText.y += (textGroup.length * 60) + 200;
+
+		if (devTeamMode == true) {
+			coolText.y += -150;
+		}
+
 		credGroup.add(coolText);
 		textGroup.add(coolText);
 	}
@@ -451,12 +461,12 @@ class TitleState extends MusicBeatState
 		} else if (STOptionsRewrite._variables.customIntro == true) {
 			switch (curBeat) {
 				case 1:
-					createCoolText(['DX Studios']);
+					createCoolText(['DX Studios'], true);
 					dxSpr.visible = true;
 				case 3:
 					deleteCoolText();
-					createCoolText(['DX Studios']);
-					addMoreText('presents');
+					createCoolText(['DX Studios'], true);
+					addMoreText('presents', true);
 					dxSpr.visible = true;
 				case 4:
 					deleteCoolText();
