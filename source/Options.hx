@@ -11,7 +11,7 @@ class Options
 
 class CyrixOptions
 {
-	public static var cy_version:String = "VS Cyrix v1.1";	// VS Cyrix: Version string
+	public static var cy_version:String = "VS Cyrix v1.1.1";	// VS Cyrix: Version string
 }
 
 // HEY! Everything below is obsolete and replaced in STOptionsRewrite.hx!
