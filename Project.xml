@@ -125,6 +125,10 @@
 	<haxelib name="discord_rpc" if="desktop"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
+	<!-- WEBM Libraries -->
+	<haxelib name="actuate" />
+	<haxelib name="extension-webm" if="desktop" />
+
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
 
