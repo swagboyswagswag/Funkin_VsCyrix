@@ -2445,15 +2445,11 @@ class PlayState extends MusicBeatState
 				transIn = FlxTransitionableState.defaultTransIn;
 				transOut = FlxTransitionableState.defaultTransOut;
 
-				// UN COMMENT THIS WHEN VOMIC FIXES THEIR FUCKING SHIT
-				/*
 				if (SONG.song.toLowerCase() == 'system-crash') {
 					FlxG.switchState(new VideoState('assets/videos/credits/credits.webm', new StoryMenuState()));
 				} else {
 					FlxG.switchState(new StoryMenuState());
 				}
-				*/
-				FlxG.switchState(new StoryMenuState());
 
 				// if ()
 				StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
