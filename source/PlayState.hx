@@ -2446,7 +2446,7 @@ class PlayState extends MusicBeatState
 				transOut = FlxTransitionableState.defaultTransOut;
 
 				if (SONG.song.toLowerCase() == 'system-crash') {
-					FlxG.switchState(new VideoState('assets/videos/credits/credits.webm', new StoryMenuState()));
+					FlxG.switchState(new VideoState(Paths.video('credits'), new StoryMenuState()));
 				} else {
 					FlxG.switchState(new StoryMenuState());
 				}
