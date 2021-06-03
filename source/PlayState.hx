@@ -643,7 +643,7 @@ class PlayState extends MusicBeatState
 		                            add(waveSpriteFG);
 		                    */
 		          }
-				  case 'assembly' | 'voltage' | 'integer-overflow' | 'mayo':
+				  case 'assembly' | 'voltage' | 'integer-overflow' | 'mayo' | 'chuggy':
 						defaultCamZoom = 0.9;
 						curStage = 'studio';
 
